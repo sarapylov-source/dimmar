@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ФинТех Сколково — Альтернативные финансовые инструменты | 16 марта 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --accent: #7C5CFC;
+  --accent-light: #A78BFA;
+  --accent-glow: rgba(124, 92, 252, 0.35);
+  --gold: #D4A853;
+  --gold-light: #F0D48A;
+  --bg-dark: #0A0A0F;
+  --bg-card: #111118;
+  --bg-card-hover: #16161F;
+  --text-primary: #F0F0F5;
+  --text-secondary: #9090A8;
+  --text-muted: #5E5E75;
+  --border: rgba(255,255,255,0.06);
+  --border-accent: rgba(124, 92, 252, 0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.45) saturate(0.7);
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, 
+      rgba(10,10,15,0.3) 0%, 
+      rgba(10,10,15,0.1) 30%, 
+      rgba(10,10,15,0.6) 70%,
+      rgba(10,10,15,1) 100%),
+    linear-gradient(90deg,
+      rgba(124,92,252,0.08) 0%,
+      transparent 50%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124, 92, 252, 0.12);
+  border: 1px solid rgba(124, 92, 252, 0.25);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 28px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero__badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero__title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.hero__title span {
+  background: linear-gradient(135deg, var(--accent-light), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__subtitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.hero__meta-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 12px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #9B7DFC 100%);
+  color: white;
+  box-shadow: 0 4px 24px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(124, 92, 252, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+  background: rgba(124, 92, 252, 0.06);
+}
+
+.btn svg { width: 18px; height: 18px; }
+
+/* ===== SECTION BASE ===== */
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+
+.section-label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 48px;
+}
+
+.section-title span {
+  color: var(--accent-light);
+}
+
+/* ===== ABOUT ===== */
+.about {
+  border-bottom: 1px solid var(--border);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about__text {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about__text p + p {
+  margin-top: 16px;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.stat-card__value {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-light);
+  margin-bottom: 4px;
+}
+
+.stat-card__label {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ===== PROGRAM ===== */
+.program {
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timeline__item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 32px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.timeline__item:hover {
+  background: rgba(124, 92, 252, 0.03);
+  padding-left: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-right: 16px;
+  border-radius: 12px;
+}
+
+.timeline__item--break {
+  opacity: 0.5;
+}
+
+.timeline__item--highlight {
+  background: rgba(124, 92, 252, 0.04);
+  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 8px 0;
+}
+
+.timeline__item--highlight:hover {
+  background: rgba(124, 92, 252, 0.08);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.timeline__time {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-light);
+  padding-top: 2px;
+}
+
+.timeline__content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.timeline__content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ===== SPEAKERS ===== */
+.speakers {
+  border-bottom: 1px solid var(--border);
+}
+
+.speakers__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.speaker-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.speaker-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.speaker-card__avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  position: relative;
+}
+
+.speaker-card__avatar::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
+.speaker-card__name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.speaker-card__role {
+  font-size: 13px;
+  color: var(--accent-light);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.speaker-card__bio {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ===== VENUE ===== */
+.venue {
+  border-bottom: 1px solid var(--border);
+}
+
+.venue__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.venue__image {
+  position: relative;
+  min-height: 340px;
+}
+
+.venue__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venue__info {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.venue__info h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.venue__info .venue-addr {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.venue__features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.venue__features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  list-style: none;
+}
+
+.venue__features li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+/* ===== CTA ===== */
+.cta {
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 120px;
+}
+
+.cta__price {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.cta__price-label {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+
+.cta__note {
+  max-width: 520px;
+  margin: 28px auto 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer__brand {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.footer__brand span { color: var(--accent-light); }
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.footer__links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer__links a:hover { color: var(--accent-light); }
+
+.footer__copy {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ===== DIVIDER ===== */
+.glow-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+  margin: 0 auto;
+}
+
+/* ===== ORGANIZER ===== */
+.organizer-bar {
+  text-align: center;
+  padding: 20px 32px;
+  font-size: 13px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.organizer-bar strong {
+  color: var(--text-secondary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; }
+  .venue__card { grid-template-columns: 1fr; }
+  .venue__image { min-height: 220px; }
+  .speakers__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 64px 20px; }
+  .hero__content { padding: 40px 20px 60px; }
+  .hero__meta { flex-direction: column; gap: 12px; }
+  .hero__actions { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+  .about__stats { grid-template-columns: 1fr; }
+  .timeline__item { grid-template-columns: 80px 1fr; gap: 16px; }
+  .speakers__grid { grid-template-columns: 1fr; }
+  .venue__info { padding: 28px; }
+}
+
+/* ===== NOISE OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  opacity: 0.4;
+}
+</style>
+</head>
+<body>
+
+<!-- ORGANIZER BAR -->
+<div class="organizer-bar">
+  Организатор — <strong>DimmarEX</strong> при поддержке сообщества цифровых финансов
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="1770872796960_image.png" alt="Бизнес-школа Сколково">
+  </div>
+  <div class="hero__content">
+    <div class="hero__badge">Регистрация открыта</div>
+    <h1 class="hero__title">
+      ФинТех Сколково:<br><span>Альтернативные финансовые инструменты</span>
+    </h1>
+    <p class="hero__subtitle">Конференция для тех, кто строит финансовое будущее</p>
+    <div class="hero__meta">
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        16 марта 2026
+      </div>
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Бизнес-школа «Сколково», Москва
+      </div>
+      <div class="hero__meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        10:00 — 19:00
+      </div>
+    </div>
+    <div class="hero__actions">
+      <a href="https://yookassa.ru/my/i/aYnZ0wbzOY-O/l" class="btn btn--primary" target="_blank">
+        Зарегистрироваться — 10 000 ₽
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#program" class="btn btn--outline">Программа мероприятия</a>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-label">О мероприятии</div>
+  <h2 class="section-title">Цифровые финансы — <span>новая реальность</span></h2>
+  <div class="about__grid">
+    <div class="about__text">
+      <p>Рынок цифровых активов стремительно трансформируется. Россия находится на пороге масштабных законодательных изменений, которые определят правила игры на годы вперёд. Те, кто войдёт в рынок сейчас, получат стратегическое преимущество.</p>
+      <p>На конференции в стенах легендарной бизнес-школы «Сколково» ведущие эксперты отрасли разберут глобальные тренды, правовые аспекты, вопросы безопасности и реальные бизнес-модели в сфере альтернативных финансов.</p>
+      <p>Это не абстрактная теория — это практические инструменты и возможность начать зарабатывать в одной из самых динамичных индустрий.</p>
+    </div>
+    <div class="about__stats">
+      <div class="stat-card">
+        <div class="stat-card__value">$101 млрд</div>
+        <div class="stat-card__label">Прогнозируемый объём рынка цифровых активов в России к 2026 г.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value">+174%</div>
+        <div class="stat-card__label">Рост децентрализованных транзакций в России</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value">50+</div>
+        <div class="stat-card__label">Стран, в которых работает экосистема DimmarEX</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__value">2026</div>
+        <div class="stat-card__label">Год лицензирования — регулятор готовит новые правила</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="program" id="program">
+  <div class="section-label">Программа</div>
+  <h2 class="section-title">Полный день <span>погружения в индустрию</span></h2>
+  <div class="timeline">
+
+    <div class="timeline__item">
+      <div class="timeline__time">10:00</div>
+      <div class="timeline__content">
+        <h3>Сбор участников и бизнес-завтрак</h3>
+        <p>Нетворкинг за завтраком в атмосфере бизнес-школы мирового уровня</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">10:30</div>
+      <div class="timeline__content">
+        <h3>Приветствие и знакомство участников</h3>
+        <p>Представление спикеров, обзор программы дня</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">11:00</div>
+      <div class="timeline__content">
+        <h3>Глобальные тенденции на рынке цифровых финансов</h3>
+        <p>Перспективы, риски, возможности — куда движется индустрия и где найти точки входа</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">12:00</div>
+      <div class="timeline__content">
+        <h3>Юридический и правовой статус цифровых активов в России</h3>
+        <p>Перспективы законодательных изменений и лицензирование — что ждёт рынок в 2026–2027</p>
+      </div>
+    </div>
+
+    <div class="timeline__item timeline__item--break">
+      <div class="timeline__time">13:00</div>
+      <div class="timeline__content">
+        <h3>Обед</h3>
+        <p>Нетворкинг и неформальное общение</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">14:00</div>
+      <div class="timeline__content">
+        <h3>Безопасность в сфере цифровых финансов</h3>
+        <p>Распространённые схемы мошенничества и защита активов — кейсы и практические рекомендации</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">15:00</div>
+      <div class="timeline__content">
+        <h3>Как устроен бизнес по обмену цифровых активов</h3>
+        <p>Правовой статус обменника и перспективы этого бизнеса в России</p>
+      </div>
+    </div>
+
+    <div class="timeline__item timeline__item--highlight">
+      <div class="timeline__time">15:30</div>
+      <div class="timeline__content">
+        <h3>Бизнес вместе с сильными партнёрами</h3>
+        <p>Как зарабатывать на обмене цифровых активов вместе с DimMar Exchange — готовая бизнес-модель и экосистема</p>
+      </div>
+    </div>
+
+    <div class="timeline__item timeline__item--break">
+      <div class="timeline__time">16:00</div>
+      <div class="timeline__content">
+        <h3>Кофе-брейк</h3>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">16:30</div>
+      <div class="timeline__content">
+        <h3>Отзыв о франшизе от действующего партнёра</h3>
+        <p>Реальный опыт, цифры и история успеха</p>
+      </div>
+    </div>
+
+    <div class="timeline__item">
+      <div class="timeline__time">17:00</div>
+      <div class="timeline__content">
+        <h3>Сессия «Вопрос — Ответ»</h3>
+        <p>Открытый диалог с экспертами — любые вопросы про рынок и бизнес</p>
+      </div>
+    </div>
+
+    <div class="timeline__item timeline__item--highlight">
+      <div class="timeline__time">17:30</div>
+      <div class="timeline__content">
+        <h3>Индивидуальные собеседования с потенциальными партнёрами</h3>
+        <p>Подписание соглашений о намерениях по запуску бизнеса</p>
+      </div>
+    </div>
+
+    <div class="timeline__item timeline__item--break">
+      <div class="timeline__time">19:00</div>
+      <div class="timeline__content">
+        <h3>Ужин</h3>
+        <p>Завершающий нетворкинг в кругу единомышленников</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers" id="speakers">
+  <div class="section-label">Спикеры</div>
+  <h2 class="section-title">Эксперты, которые <span>формируют рынок</span></h2>
+  <div class="speakers__grid">
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar">МУ</div>
+      <div class="speaker-card__name">Марат Усманов</div>
+      <div class="speaker-card__role">Учредитель DimmarEX</div>
+      <div class="speaker-card__bio">Основатель DIMMAR EXCHANGE. Предприниматель с опытом создания бизнесов с нуля — от строительной компании с 1000+ сотрудников до международной финтех-экосистемы.</div>
+    </div>
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar">ДМ</div>
+      <div class="speaker-card__name">Дмитрий Мансуров</div>
+      <div class="speaker-card__role">Главный эксперт по ВЭД</div>
+      <div class="speaker-card__bio">17 лет в финансах и недвижимости. Два высших образования и степень MBA, преподавал в РАНХиГС. Более 10 лет — советник вице-спикера Мосгордумы.</div>
+    </div>
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar">СС</div>
+      <div class="speaker-card__name">Семён Сарапулов</div>
+      <div class="speaker-card__role">Эксперт по масштабированию</div>
+      <div class="speaker-card__bio">Серийный предприниматель, основатель крупнейших франчайзинговых сетей, инвестор, ментор и стратег с опытом экзита и масштабирования бизнесов.</div>
+    </div>
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar">СМ</div>
+      <div class="speaker-card__name">Сергей Маслов</div>
+      <div class="speaker-card__role">Крипто-евангелист</div>
+      <div class="speaker-card__bio">IT-герой и заядлый криптан. Успел поработать в большинстве заметных бирж и кошельков. Невероятная экспертиза рынка цифровых активов.</div>
+    </div>
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar">ЕК</div>
+      <div class="speaker-card__name">Евгений</div>
+      <div class="speaker-card__role">Кибер-безопасность</div>
+      <div class="speaker-card__bio">Специалист по кибер-безопасности, крипто-детектив. Основатель компании «Кибер Ёж». Расследование инцидентов и защита цифровых активов.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue">
+  <div class="section-label">Площадка</div>
+  <h2 class="section-title">Бизнес-школа <span>«Сколково»</span></h2>
+  <div class="venue__card">
+    <div class="venue__image">
+      <img src="1770872796960_image.png" alt="Бизнес-школа Сколково">
+    </div>
+    <div class="venue__info">
+      <h3>Московская школа управления «Сколково»</h3>
+      <p class="venue-addr">Новая Москва, Сколково, ул. Новая, д. 100</p>
+      <ul class="venue__features">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Аудитория международного класса
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Бизнес-завтрак, обед и ужин включены
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Зона нетворкинга и переговоров
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Удобная транспортная доступность
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="section-label">Участие</div>
+  <h2 class="section-title">Одно решение меняет <span>всё</span></h2>
+  <div class="cta__price">10 000 ₽</div>
+  <div class="cta__price-label">стоимость участия · количество мест ограничено</div>
+  <a href="https://yookassa.ru/my/i/aYnZ0wbzOY-O/l" class="btn btn--primary" target="_blank">
+    Забронировать место
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <p class="cta__note">Включено: доступ на все сессии, бизнес-завтрак, обед, кофе-брейк, ужин, материалы конференции и возможность индивидуальных переговоров с экспертами.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">DIMMAR<span>EX</span></div>
+    <div class="footer__links">
+      <a href="https://dimmarex.com" target="_blank">dimmarex.com</a>
+      <a href="https://t.me/dimmarfranche" target="_blank">Telegram</a>
+      <a href="mailto:partners@dimmarex.com">partners@dimmarex.com</a>
+      <a href="tel:+79870275033">+7 987 027-50-33</a>
+    </div>
+    <div class="footer__copy">© 2026 DimmarEX. Все права защищены.</div>
+  </div>
+</footer>
+
+</body>
+</html>
