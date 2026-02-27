@@ -6,6 +6,9 @@
 <title>ФинТех Сколково — Альтернативные финансовые инструменты | 16 марта 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Pixel Tag Code -->
+<script>(function(t,l,g,r,m){t[g]||(g=t[g]=function(){g.run?g.run.apply(g,arguments):g.queue.push(arguments)},g.queue=[],t=l.createElement(r),t.async=!0,t.src=m,l=l.getElementsByTagName(r)[0],l.parentNode.insertBefore(t,l))})(window,document,'tgp','script','https://telegram.org/js/pixel.js');tgp('init','MZT9l0Ez');</script>
+<!-- End Pixel Tag Code -->
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -300,6 +303,100 @@ section {
   line-height: 1.4;
 }
 
+/* ===== WHY ATTEND ===== */
+.why-attend {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordion__item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.accordion__item:hover,
+.accordion__item.active {
+  border-color: var(--border-accent);
+}
+
+.accordion__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  cursor: pointer;
+  user-select: none;
+  gap: 16px;
+}
+
+.accordion__header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.accordion__header h3::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.accordion__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.accordion__icon svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-light);
+  transition: transform 0.3s;
+}
+
+.accordion__item.active .accordion__icon {
+  background: rgba(124, 92, 252, 0.15);
+  border-color: var(--accent);
+}
+
+.accordion__item.active .accordion__icon svg {
+  transform: rotate(180deg);
+}
+
+.accordion__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.accordion__body-inner {
+  padding: 0 28px 22px 50px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
 /* ===== PROGRAM ===== */
 .program {
   border-bottom: 1px solid var(--border);
@@ -395,30 +492,23 @@ section {
 }
 
 .speaker-card__avatar {
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto 20px;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: white;
   position: relative;
+  overflow: hidden;
+  border: 3px solid transparent;
+  background-image: linear-gradient(var(--bg-card), var(--bg-card)), linear-gradient(135deg, var(--accent), var(--gold));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
-.speaker-card__avatar::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--gold));
-  z-index: -1;
-  opacity: 0.3;
-  filter: blur(8px);
+.speaker-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .speaker-card__name {
@@ -508,7 +598,7 @@ section {
   flex-shrink: 0;
 }
 
-/* ===== CTA ===== */
+/* ===== CTA + FORM ===== */
 .cta {
   text-align: center;
   padding-top: 80px;
@@ -529,12 +619,88 @@ section {
 .cta__price-label {
   font-size: 16px;
   color: var(--text-muted);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
+}
+
+/* Registration form */
+.reg-form {
+  max-width: 440px;
+  margin: 0 auto 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.reg-form__input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.reg-form__input::placeholder {
+  color: var(--text-muted);
+}
+
+.reg-form__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 92, 252, 0.1);
+}
+
+.reg-form__btn {
+  width: 100%;
+  padding: 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent) 0%, #9B7DFC 100%);
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.reg-form__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(124, 92, 252, 0.5);
+}
+
+.reg-form__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reg-form__status {
+  text-align: center;
+  font-size: 14px;
+  min-height: 22px;
+}
+
+.reg-form__status--success {
+  color: #4ade80;
+}
+
+.reg-form__status--error {
+  color: #f87171;
 }
 
 .cta__note {
   max-width: 520px;
-  margin: 28px auto 0;
+  margin: 0 auto;
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.6;
@@ -648,7 +814,7 @@ body::before {
 <!-- HERO -->
 <section class="hero">
   <div class="hero__bg">
-    <img src="1770872796960_image.png" alt="Бизнес-школа Сколково">
+    <img src="skolkovo.png" alt="Бизнес-школа Сколково">
   </div>
   <div class="hero__content">
     <div class="hero__badge">Регистрация открыта</div>
@@ -671,7 +837,7 @@ body::before {
       </div>
     </div>
     <div class="hero__actions">
-      <a href="https://yookassa.ru/my/i/aYnZ0wbzOY-O/l" class="btn btn--primary" target="_blank">
+      <a href="#register" class="btn btn--primary">
         Зарегистрироваться — 10 000 ₽
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -710,6 +876,75 @@ body::before {
         <div class="stat-card__label">Год лицензирования — регулятор готовит новые правила</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WHY ATTEND -->
+<section class="why-attend">
+  <div class="section-label">Зачем приходить</div>
+  <h2 class="section-title">Почему стоит <span>посетить конференцию?</span></h2>
+  <div class="accordion">
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Разобраться в рынке цифровых активов</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">Эксперты с реальным опытом на рынке расскажут, как устроена индустрия изнутри: от механизмов обмена до международных расчётов. Вы получите целостное понимание рынка, а не обрывочные знания из Telegram-каналов.</div>
+      </div>
+    </div>
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Узнать, как открыть легальный бизнес в сфере цифровых финансов</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">Юристы и действующие предприниматели покажут пошаговую модель: от регистрации и выбора формата до первых клиентов. Готовая бизнес-модель с понятной экономикой и поддержкой на старте.</div>
+      </div>
+    </div>
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Прояснить ближайшие тренды рынка на 2026 год</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">Лицензирование, цифровой рубль, новые правила для квалифицированных инвесторов — всё это уже на горизонте. Вы узнаете, к чему готовиться и как занять позицию до того, как конкуренция ужесточится.</div>
+      </div>
+    </div>
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Получить контакты и войти в сообщество</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">В зале будут инвесторы, действующие владельцы обменников, эксперты по безопасности и представители финтех-компаний. Один правильный контакт может окупить участие многократно.</div>
+      </div>
+    </div>
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Научиться защищать свои активы от мошенников</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">Специалист по кибер-безопасности разберёт реальные кейсы потерь и схемы, которые используют злоумышленники. Практические рекомендации, которые вы сможете применить сразу после конференции.</div>
+      </div>
+    </div>
+
+    <div class="accordion__item">
+      <div class="accordion__header" onclick="toggleAccordion(this)">
+        <h3>Увидеть изнутри, как работает успешная франшиза</h3>
+        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="accordion__body">
+        <div class="accordion__body-inner">Действующий партнёр поделится реальными цифрами и опытом: сколько вложил, сколько зарабатывает, с какими трудностями столкнулся. Без приукрашивания — только факты и личная история.</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -832,35 +1067,35 @@ body::before {
   <div class="speakers__grid">
 
     <div class="speaker-card">
-      <div class="speaker-card__avatar">МУ</div>
+      <div class="speaker-card__avatar"><img src="speaker1.png" alt="Марат Усманов"></div>
       <div class="speaker-card__name">Марат Усманов</div>
       <div class="speaker-card__role">Учредитель DimmarEX</div>
       <div class="speaker-card__bio">Основатель DIMMAR EXCHANGE. Предприниматель с опытом создания бизнесов с нуля — от строительной компании с 1000+ сотрудников до международной финтех-экосистемы.</div>
     </div>
 
     <div class="speaker-card">
-      <div class="speaker-card__avatar">ДМ</div>
+      <div class="speaker-card__avatar"><img src="speaker2.png" alt="Дмитрий Мансуров"></div>
       <div class="speaker-card__name">Дмитрий Мансуров</div>
       <div class="speaker-card__role">Главный эксперт по ВЭД</div>
       <div class="speaker-card__bio">17 лет в финансах и недвижимости. Два высших образования и степень MBA, преподавал в РАНХиГС. Более 10 лет — советник вице-спикера Мосгордумы.</div>
     </div>
 
     <div class="speaker-card">
-      <div class="speaker-card__avatar">СС</div>
-      <div class="speaker-card__name">Семён Сарапулов</div>
-      <div class="speaker-card__role">Эксперт по масштабированию</div>
-      <div class="speaker-card__bio">Серийный предприниматель, основатель крупнейших франчайзинговых сетей, инвестор, ментор и стратег с опытом экзита и масштабирования бизнесов.</div>
-    </div>
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar">СМ</div>
+      <div class="speaker-card__avatar"><img src="speaker3.png" alt="Сергей Маслов"></div>
       <div class="speaker-card__name">Сергей Маслов</div>
       <div class="speaker-card__role">Крипто-евангелист</div>
       <div class="speaker-card__bio">IT-герой и заядлый криптан. Успел поработать в большинстве заметных бирж и кошельков. Невероятная экспертиза рынка цифровых активов.</div>
     </div>
 
     <div class="speaker-card">
-      <div class="speaker-card__avatar">ЕК</div>
+      <div class="speaker-card__avatar"><img src="speaker4.png" alt="Семён Сарапулов"></div>
+      <div class="speaker-card__name">Семён Сарапулов</div>
+      <div class="speaker-card__role">Эксперт по масштабированию</div>
+      <div class="speaker-card__bio">Серийный предприниматель, основатель крупнейших франчайзинговых сетей, инвестор, ментор и стратег с опытом экзита и масштабирования бизнесов.</div>
+    </div>
+
+    <div class="speaker-card">
+      <div class="speaker-card__avatar"><img src="speaker5.png" alt="Евгений — Кибер Ёж"></div>
       <div class="speaker-card__name">Евгений</div>
       <div class="speaker-card__role">Кибер-безопасность</div>
       <div class="speaker-card__bio">Специалист по кибер-безопасности, крипто-детектив. Основатель компании «Кибер Ёж». Расследование инцидентов и защита цифровых активов.</div>
@@ -875,7 +1110,7 @@ body::before {
   <h2 class="section-title">Бизнес-школа <span>«Сколково»</span></h2>
   <div class="venue__card">
     <div class="venue__image">
-      <img src="1770872796960_image.png" alt="Бизнес-школа Сколково">
+      <img src="skolkovo.png" alt="Бизнес-школа Сколково">
     </div>
     <div class="venue__info">
       <h3>Московская школа управления «Сколково»</h3>
@@ -902,16 +1137,24 @@ body::before {
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
+<!-- CTA + REGISTRATION FORM -->
+<section class="cta" id="register">
   <div class="section-label">Участие</div>
   <h2 class="section-title">Одно решение меняет <span>всё</span></h2>
   <div class="cta__price">10 000 ₽</div>
   <div class="cta__price-label">стоимость участия · количество мест ограничено</div>
-  <a href="https://yookassa.ru/my/i/aYnZ0wbzOY-O/l" class="btn btn--primary" target="_blank">
-    Забронировать место
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
+
+  <div class="reg-form" id="regForm">
+    <input type="text" class="reg-form__input" id="regName" placeholder="Ваше имя" required>
+    <input type="tel" class="reg-form__input" id="regPhone" placeholder="Телефон" required>
+    <input type="email" class="reg-form__input" id="regEmail" placeholder="E-mail" required>
+    <button type="button" class="reg-form__btn" id="regBtn" onclick="submitForm()">
+      Зарегистрироваться и оплатить
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="reg-form__status" id="regStatus"></div>
+  </div>
+
   <p class="cta__note">Включено: доступ на все сессии, бизнес-завтрак, обед, кофе-брейк, ужин, материалы конференции и возможность индивидуальных переговоров с экспертами.</p>
 </section>
 
@@ -928,6 +1171,74 @@ body::before {
     <div class="footer__copy">© 2026 DimmarEX. Все права защищены.</div>
   </div>
 </footer>
+
+<script>
+/* Accordion */
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const body = item.querySelector('.accordion__body');
+  const isActive = item.classList.contains('active');
+
+  document.querySelectorAll('.accordion__item.active').forEach(el => {
+    el.classList.remove('active');
+    el.querySelector('.accordion__body').style.maxHeight = null;
+  });
+
+  if (!isActive) {
+    item.classList.add('active');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+/* Form submission to Telegram bot */
+const BOT_TOKEN = '8447258387:AAFEutiJ1gxDWyPtKZS6HC9cQN3U2L-X6q4';
+const CHAT_ID = '-5172747102';
+const PAYMENT_URL = 'https://yookassa.ru/my/i/aYnZ0wbzOY-O/l';
+
+async function submitForm() {
+  const name = document.getElementById('regName').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const btn = document.getElementById('regBtn');
+  const status = document.getElementById('regStatus');
+
+  if (!name || !phone || !email) {
+    status.className = 'reg-form__status reg-form__status--error';
+    status.textContent = 'Пожалуйста, заполните все поля';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Отправка...';
+  status.textContent = '';
+
+  const message = `🎟 Новая регистрация — ФинТех Сколково\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 E-mail: ${email}\n\n📅 Конференция 16 марта 2026`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'HTML' })
+    });
+
+    if (res.ok) {
+      status.className = 'reg-form__status reg-form__status--success';
+      status.textContent = '✓ Заявка отправлена! Переходим к оплате...';
+      setTimeout(() => { window.open(PAYMENT_URL, '_blank'); }, 1200);
+    } else {
+      throw new Error('Telegram API error');
+    }
+  } catch (e) {
+    // Even if Telegram fails, still redirect to payment
+    status.className = 'reg-form__status reg-form__status--success';
+    status.textContent = '✓ Переходим к оплате...';
+    setTimeout(() => { window.open(PAYMENT_URL, '_blank'); }, 800);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = 'Зарегистрироваться и оплатить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+}
+</script>
 
 </body>
 </html>
