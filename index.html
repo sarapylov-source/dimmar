@@ -3,1162 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ФинТех Сколково — Альтернативные финансовые инструменты | 16 марта 2026</title>
+<title>Интенсив: Цифровые финансы на практике | 28 марта 2026, Уфа</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Pixel Tag Code -->
 <script>(function(t,l,g,r,m){t[g]||(g=t[g]=function(){g.run?g.run.apply(g,arguments):g.queue.push(arguments)},g.queue=[],t=l.createElement(r),t.async=!0,t.src=m,l=l.getElementsByTagName(r)[0],l.parentNode.insertBefore(t,l))})(window,document,'tgp','script','https://telegram.org/js/pixel.js');tgp('init','MZT9l0Ez');</script>
-<!-- End Pixel Tag Code -->
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --accent: #7C5CFC;
-  --accent-light: #A78BFA;
-  --accent-glow: rgba(124, 92, 252, 0.35);
-  --gold: #D4A853;
-  --gold-light: #F0D48A;
-  --bg-dark: #0A0A0F;
-  --bg-card: #111118;
-  --bg-card-hover: #16161F;
-  --text-primary: #F0F0F5;
-  --text-secondary: #9090A8;
-  --text-muted: #5E5E75;
-  --border: rgba(255,255,255,0.06);
-  --border-accent: rgba(124, 92, 252, 0.2);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Manrope', sans-serif;
-  background: var(--bg-dark);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  filter: brightness(0.45) saturate(0.7);
-}
-
-.hero__bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, 
-      rgba(10,10,15,0.3) 0%, 
-      rgba(10,10,15,0.1) 30%, 
-      rgba(10,10,15,0.6) 70%,
-      rgba(10,10,15,1) 100%),
-    linear-gradient(90deg,
-      rgba(124,92,252,0.08) 0%,
-      transparent 50%);
-}
-
-.hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 32px 80px;
-}
-
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(124, 92, 252, 0.12);
-  border: 1px solid rgba(124, 92, 252, 0.25);
-  border-radius: 100px;
-  padding: 8px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 28px;
-  animation: fadeInUp 0.8s ease both;
-}
-
-.hero__badge::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-  animation: pulse-dot 2s ease infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
-}
-
-.hero__title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 12px;
-  animation: fadeInUp 0.8s ease 0.1s both;
-}
-
-.hero__title span {
-  background: linear-gradient(135deg, var(--accent-light), var(--gold-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero__subtitle {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(18px, 2.5vw, 28px);
-  font-weight: 300;
-  color: var(--text-secondary);
-  margin-bottom: 36px;
-  animation: fadeInUp 0.8s ease 0.2s both;
-}
-
-.hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 40px;
-  animation: fadeInUp 0.8s ease 0.3s both;
-}
-
-.hero__meta-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.hero__meta-item svg {
-  width: 20px;
-  height: 20px;
-  color: var(--accent-light);
-  flex-shrink: 0;
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  animation: fadeInUp 0.8s ease 0.4s both;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  border-radius: 12px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn--primary {
-  background: linear-gradient(135deg, var(--accent) 0%, #9B7DFC 100%);
-  color: white;
-  box-shadow: 0 4px 24px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.15);
-}
-
-.btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(124, 92, 252, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-}
-
-.btn--outline {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.btn--outline:hover {
-  border-color: var(--accent);
-  background: rgba(124, 92, 252, 0.06);
-}
-
-.btn svg { width: 18px; height: 18px; }
-
-/* ===== SECTION BASE ===== */
-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 32px;
-}
-
-.section-label {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(24px, 3.5vw, 42px);
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 48px;
-}
-
-.section-title span {
-  color: var(--accent-light);
-}
-
-/* ===== ABOUT ===== */
-.about {
-  border-bottom: 1px solid var(--border);
-}
-
-.about__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
-}
-
-.about__text {
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--text-secondary);
-}
-
-.about__text p + p {
-  margin-top: 16px;
-}
-
-.about__stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.stat-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-.stat-card__value {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent-light);
-  margin-bottom: 4px;
-}
-
-.stat-card__label {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
-/* ===== WHY ATTEND ===== */
-.why-attend {
-  border-bottom: 1px solid var(--border);
-}
-
-.accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.accordion__item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: border-color 0.3s;
-}
-
-.accordion__item:hover,
-.accordion__item.active {
-  border-color: var(--border-accent);
-}
-
-.accordion__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 28px;
-  cursor: pointer;
-  user-select: none;
-  gap: 16px;
-}
-
-.accordion__header h3 {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.accordion__header h3::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.accordion__icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.3s;
-}
-
-.accordion__icon svg {
-  width: 14px;
-  height: 14px;
-  color: var(--accent-light);
-  transition: transform 0.3s;
-}
-
-.accordion__item.active .accordion__icon {
-  background: rgba(124, 92, 252, 0.15);
-  border-color: var(--accent);
-}
-
-.accordion__item.active .accordion__icon svg {
-  transform: rotate(180deg);
-}
-
-.accordion__body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
-.accordion__body-inner {
-  padding: 0 28px 22px 50px;
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-/* ===== PROGRAM ===== */
-.program {
-  border-bottom: 1px solid var(--border);
-}
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.timeline__item {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 32px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
-}
-
-.timeline__item:hover {
-  background: rgba(124, 92, 252, 0.03);
-  padding-left: 16px;
-  margin-left: -16px;
-  margin-right: -16px;
-  padding-right: 16px;
-  border-radius: 12px;
-}
-
-.timeline__item--break {
-  opacity: 0.5;
-}
-
-.timeline__item--highlight {
-  background: rgba(124, 92, 252, 0.04);
-  border: 1px solid var(--border-accent);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 8px 0;
-}
-
-.timeline__item--highlight:hover {
-  background: rgba(124, 92, 252, 0.08);
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.timeline__time {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--accent-light);
-  padding-top: 2px;
-}
-
-.timeline__content h3 {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  line-height: 1.4;
-}
-
-.timeline__content p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* ===== SPEAKERS ===== */
-.speakers {
-  border-bottom: 1px solid var(--border);
-}
-
-.speakers__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-}
-
-.speaker-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px 24px;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.speaker-card:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-
-.speaker-card__avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid transparent;
-  background-image: linear-gradient(var(--bg-card), var(--bg-card)), linear-gradient(135deg, var(--accent), var(--gold));
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}
-
-.speaker-card__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.speaker-card__name {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.speaker-card__role {
-  font-size: 13px;
-  color: var(--accent-light);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.speaker-card__bio {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* ===== VENUE ===== */
-.venue {
-  border-bottom: 1px solid var(--border);
-}
-
-.venue__card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.venue__image {
-  position: relative;
-  min-height: 340px;
-}
-
-.venue__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.venue__info {
-  padding: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.venue__info h3 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.venue__info .venue-addr {
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
-}
-
-.venue__features {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.venue__features li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 15px;
-  color: var(--text-secondary);
-  list-style: none;
-}
-
-.venue__features li svg {
-  width: 18px;
-  height: 18px;
-  color: var(--accent-light);
-  flex-shrink: 0;
-}
-
-/* ===== CTA + FORM ===== */
-.cta {
-  text-align: center;
-  padding-top: 80px;
-  padding-bottom: 120px;
-}
-
-.cta__price {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(48px, 6vw, 72px);
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 8px;
-}
-
-.cta__price-label {
-  font-size: 16px;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-/* Registration form */
-.reg-form {
-  max-width: 440px;
-  margin: 0 auto 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  text-align: left;
-}
-
-.reg-form__input {
-  width: 100%;
-  padding: 16px 20px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-primary);
-  font-family: 'Manrope', sans-serif;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.reg-form__input::placeholder {
-  color: var(--text-muted);
-}
-
-.reg-form__input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(124, 92, 252, 0.1);
-}
-
-.reg-form__btn {
-  width: 100%;
-  padding: 18px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, var(--accent) 0%, #9B7DFC 100%);
-  color: white;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 24px var(--accent-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.reg-form__btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(124, 92, 252, 0.5);
-}
-
-.reg-form__btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.reg-form__status {
-  text-align: center;
-  font-size: 14px;
-  min-height: 22px;
-}
-
-.reg-form__status--success {
-  color: #4ade80;
-}
-
-.reg-form__status--error {
-  color: #f87171;
-}
-
-.cta__note {
-  max-width: 520px;
-  margin: 0 auto;
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 48px 32px;
-  text-align: center;
-}
-
-.footer__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer__brand {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-
-.footer__brand span { color: var(--accent-light); }
-
-.footer__links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 20px;
-}
-
-.footer__links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-
-.footer__links a:hover { color: var(--accent-light); }
-
-.footer__copy {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* ===== DIVIDER ===== */
-.glow-line {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
-  margin: 0 auto;
-}
-
-/* ===== ORGANIZER ===== */
-.organizer-bar {
-  text-align: center;
-  padding: 20px 32px;
-  font-size: 13px;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
-}
-
-.organizer-bar strong {
-  color: var(--text-secondary);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .about__grid { grid-template-columns: 1fr; }
-  .venue__card { grid-template-columns: 1fr; }
-  .venue__image { min-height: 220px; }
-  .speakers__grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 600px) {
-  section { padding: 64px 20px; }
-  .hero__content { padding: 40px 20px 60px; }
-  .hero__meta { flex-direction: column; gap: 12px; }
-  .hero__actions { flex-direction: column; }
-  .btn { width: 100%; justify-content: center; }
-  .about__stats { grid-template-columns: 1fr; }
-  .timeline__item { grid-template-columns: 80px 1fr; gap: 16px; }
-  .speakers__grid { grid-template-columns: 1fr; }
-  .venue__info { padding: 28px; }
-}
-
-/* ===== NOISE OVERLAY ===== */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px;
-  opacity: 0.4;
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--accent:#7C5CFC;--accent-light:#A78BFA;--accent-glow:rgba(124,92,252,0.35);--gold:#D4A853;--gold-light:#F0D48A;--bg-dark:#0A0A0F;--bg-card:#111118;--bg-card-hover:#16161F;--text-primary:#F0F0F5;--text-secondary:#9090A8;--text-muted:#5E5E75;--border:rgba(255,255,255,0.06);--border-accent:rgba(124,92,252,0.2);--green:#4ade80}html{scroll-behavior:smooth}body{font-family:'Manrope',sans-serif;background:var(--bg-dark);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}.hero__bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 50%,rgba(124,92,252,0.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(212,168,83,0.06) 0%,transparent 50%),var(--bg-dark)}.hero__bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(0deg,var(--bg-dark),transparent)}.hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,92,252,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,252,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero__content{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:140px 32px 100px}.hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,252,0.12);border:1px solid rgba(124,92,252,0.25);border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-light);margin-bottom:28px;animation:fadeInUp .8s ease both}.hero__badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse-dot 2s ease infinite}@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero__label{font-family:'Unbounded',sans-serif;font-size:clamp(14px,1.8vw,18px);font-weight:500;color:var(--accent-light);letter-spacing:.04em;margin-bottom:12px;animation:fadeInUp .8s ease .05s both}.hero__title{font-family:'Unbounded',sans-serif;font-size:clamp(32px,5vw,60px);font-weight:700;line-height:1.1;margin-bottom:16px;animation:fadeInUp .8s ease .1s both}.hero__title span{background:linear-gradient(135deg,var(--accent-light),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero__subtitle{font-size:clamp(17px,2vw,22px);font-weight:400;color:var(--text-secondary);margin-bottom:40px;max-width:640px;line-height:1.6;animation:fadeInUp .8s ease .2s both}
+.hero__meta{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:40px;animation:fadeInUp .8s ease .3s both}.hero__meta-item{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:500;color:var(--text-primary)}.hero__meta-item svg{width:20px;height:20px;color:var(--accent-light);flex-shrink:0}.hero__actions{display:flex;flex-wrap:wrap;gap:16px;animation:fadeInUp .8s ease .4s both}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:12px;font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1)}.btn--primary{background:linear-gradient(135deg,var(--accent) 0%,#9B7DFC 100%);color:#fff;box-shadow:0 4px 24px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.15)}.btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(124,92,252,.5),inset 0 1px 0 rgba(255,255,255,.15)}.btn--outline{background:transparent;color:var(--text-primary);border:1px solid rgba(255,255,255,.15)}.btn--outline:hover{border-color:var(--accent);background:rgba(124,92,252,.06)}.btn svg{width:18px;height:18px}
+section{max-width:1200px;margin:0 auto;padding:100px 32px}.section-label{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-light);margin-bottom:12px}.section-title{font-family:'Unbounded',sans-serif;font-size:clamp(24px,3.5vw,42px);font-weight:700;line-height:1.2;margin-bottom:48px}.section-title span{color:var(--accent-light)}
+.about{border-bottom:1px solid var(--border)}.about__grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.about__text{font-size:17px;line-height:1.8;color:var(--text-secondary)}.about__text p+p{margin-top:16px}.about__features{display:flex;flex-direction:column;gap:16px}.feature-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;display:flex;align-items:flex-start;gap:16px;transition:all .3s ease}.feature-item:hover{border-color:var(--border-accent);transform:translateX(4px)}.feature-item__icon{width:40px;height:40px;border-radius:10px;background:rgba(124,92,252,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}.feature-item__icon svg{width:20px;height:20px;color:var(--accent-light)}.feature-item h4{font-size:15px;font-weight:700;margin-bottom:2px}.feature-item p{font-size:13px;color:var(--text-muted);line-height:1.4}
+.why-attend{border-bottom:1px solid var(--border)}.accordion{display:flex;flex-direction:column;gap:8px}.accordion__item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s}.accordion__item:hover,.accordion__item.active{border-color:var(--border-accent)}.accordion__header{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;cursor:pointer;user-select:none;gap:16px}.accordion__header h3{font-size:16px;font-weight:600;line-height:1.4;display:flex;align-items:center;gap:14px}.accordion__header h3::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 10px var(--accent-glow)}.accordion__icon{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}.accordion__icon svg{width:14px;height:14px;color:var(--accent-light);transition:transform .3s}.accordion__item.active .accordion__icon{background:rgba(124,92,252,.15);border-color:var(--accent)}.accordion__item.active .accordion__icon svg{transform:rotate(180deg)}.accordion__body{max-height:0;overflow:hidden;transition:max-height .35s ease}.accordion__body-inner{padding:0 28px 22px 50px;font-size:15px;color:var(--text-secondary);line-height:1.7}
+.program{border-bottom:1px solid var(--border)}.timeline{display:flex;flex-direction:column;gap:2px}.timeline__item{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--border);transition:all .3s ease}.timeline__item:hover{background:rgba(124,92,252,.03);padding-left:16px;margin-left:-16px;margin-right:-16px;padding-right:16px;border-radius:12px}.timeline__item--break{opacity:.5}.timeline__item--highlight{background:rgba(124,92,252,.04);border:1px solid var(--border-accent);border-radius:16px;padding:24px;margin:8px 0}.timeline__item--highlight:hover{background:rgba(124,92,252,.08);margin-left:0;margin-right:0}.timeline__time{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:600;color:var(--accent-light);padding-top:2px}.timeline__content h3{font-size:17px;font-weight:700;margin-bottom:4px;line-height:1.4}.timeline__content p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.speakers{border-bottom:1px solid var(--border)}.speakers__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}.speaker-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 24px;text-align:center;transition:all .4s cubic-bezier(.4,0,.2,1)}.speaker-card:hover{border-color:var(--border-accent);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}.speaker-card__avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 20px;overflow:hidden;border:3px solid transparent;background-image:linear-gradient(var(--bg-card),var(--bg-card)),linear-gradient(135deg,var(--accent),var(--gold));background-origin:border-box;background-clip:padding-box,border-box}.speaker-card__avatar img{width:100%;height:100%;object-fit:cover;display:block}.speaker-card__name{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:600;margin-bottom:6px}.speaker-card__role{font-size:13px;color:var(--accent-light);font-weight:600;margin-bottom:12px}.speaker-card__bio{font-size:13px;color:var(--text-muted);line-height:1.5}
+.hotels{border-bottom:1px solid var(--border)}.hotels__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.hotel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .3s ease}.hotel-card:hover{border-color:var(--border-accent);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}.hotel-card__stars{font-size:14px;color:var(--gold);margin-bottom:12px;letter-spacing:2px}.hotel-card__name{font-family:'Unbounded',sans-serif;font-size:17px;font-weight:600;margin-bottom:6px}.hotel-card__rating{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-secondary);margin-bottom:14px}.hotel-card__rating strong{color:var(--gold-light);font-weight:700}.hotel-card__addr{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:16px}.hotel-card__phone{font-size:14px;color:var(--accent-light);text-decoration:none;font-weight:600}.hotel-card__phone:hover{text-decoration:underline}
+.bonus-banner{max-width:1200px;margin:0 auto;padding:0 32px}.bonus-banner__inner{background:linear-gradient(135deg,rgba(124,92,252,.1),rgba(212,168,83,.08));border:1px solid var(--border-accent);border-radius:20px;padding:40px 48px;display:flex;align-items:center;gap:28px;margin:-40px 0 0;position:relative}.bonus-banner__icon{width:64px;height:64px;border-radius:16px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}.bonus-banner__icon svg{width:28px;height:28px;color:var(--green)}.bonus-banner__text h3{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px}.bonus-banner__text h3 span{color:var(--green)}.bonus-banner__text p{font-size:15px;color:var(--text-secondary);line-height:1.6}
+.cta{text-align:center;padding-top:80px;padding-bottom:120px}.cta__price{font-family:'Unbounded',sans-serif;font-size:clamp(48px,6vw,72px);font-weight:800;background:linear-gradient(135deg,var(--text-primary),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}.cta__price-label{font-size:16px;color:var(--text-muted);margin-bottom:40px}
+.reg-form{max-width:440px;margin:0 auto 32px;display:flex;flex-direction:column;gap:14px;text-align:left}.reg-form__input{width:100%;padding:16px 20px;border-radius:12px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-primary);font-family:'Manrope',sans-serif;font-size:15px;outline:none;transition:border-color .3s}.reg-form__input::placeholder{color:var(--text-muted)}.reg-form__input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.1)}.reg-form__btn{width:100%;padding:18px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent) 0%,#9B7DFC 100%);color:#fff;font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 24px var(--accent-glow);display:flex;align-items:center;justify-content:center;gap:10px}.reg-form__btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(124,92,252,.5)}.reg-form__btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.reg-form__status{text-align:center;font-size:14px;min-height:22px}.reg-form__status--success{color:#4ade80}.reg-form__status--error{color:#f87171}
+.cta__note{max-width:520px;margin:0 auto;font-size:14px;color:var(--text-muted);line-height:1.6}
+.footer{border-top:1px solid var(--border);padding:48px 32px;text-align:center}.footer__inner{max-width:1200px;margin:0 auto}.footer__brand{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;margin-bottom:16px}.footer__brand span{color:var(--accent-light)}.footer__links{display:flex;justify-content:center;flex-wrap:wrap;gap:24px;margin-bottom:20px}.footer__links a{color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color .3s}.footer__links a:hover{color:var(--accent-light)}.footer__copy{font-size:12px;color:var(--text-muted)}
+.glow-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent-glow),transparent)}.organizer-bar{text-align:center;padding:20px 32px;font-size:13px;color:var(--text-muted);border-bottom:1px solid var(--border)}.organizer-bar strong{color:var(--text-secondary)}
+@media(max-width:900px){.about__grid{grid-template-columns:1fr}.hotels__grid{grid-template-columns:1fr}.speakers__grid{grid-template-columns:1fr 1fr}.bonus-banner__inner{flex-direction:column;text-align:center;padding:32px 24px}}
+@media(max-width:600px){section{padding:64px 20px}.hero__content{padding:100px 20px 60px}.hero__meta{flex-direction:column;gap:12px}.hero__actions{flex-direction:column}.btn{width:100%;justify-content:center}.timeline__item{grid-template-columns:80px 1fr;gap:16px}.speakers__grid{grid-template-columns:1fr}}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px;opacity:.4}
 </style>
 </head>
 <body>
+<div class="organizer-bar">Организатор — <strong>DimmarEX</strong> · Офис обменного пункта, Уфа</div>
 
-<!-- ORGANIZER BAR -->
-<div class="organizer-bar">
-  Организатор — <strong>DimmarEX</strong> при поддержке сообщества цифровых финансов
-</div>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="hero__bg">
-    <img src="skolkovo.png" alt="Бизнес-школа Сколково">
-  </div>
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
   <div class="hero__content">
-    <div class="hero__badge">Регистрация открыта</div>
-    <h1 class="hero__title">
-      ФинТех Сколково:<br><span>Альтернативные финансовые инструменты</span>
-    </h1>
-    <p class="hero__subtitle">Конференция для тех, кто строит финансовое будущее</p>
+    <div class="hero__badge">Набор участников открыт</div>
+    <div class="hero__label">Интенсив от DimmarEX</div>
+    <h1 class="hero__title">Цифровые финансы<br><span>на практике</span></h1>
+    <p class="hero__subtitle">Погружение в операционные процессы реального обменника. Вы увидите изнутри, как работает действующий пункт обмена цифровых активов — от первой заявки клиента до закрытия сделки.</p>
     <div class="hero__meta">
-      <div class="hero__meta-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        16 марта 2026
-      </div>
-      <div class="hero__meta-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Бизнес-школа «Сколково», Москва
-      </div>
-      <div class="hero__meta-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        10:00 — 19:00
-      </div>
+      <div class="hero__meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>28 марта 2026</div>
+      <div class="hero__meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Офис DimMarEx, Уфа</div>
+      <div class="hero__meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>10:00 — 19:00</div>
     </div>
     <div class="hero__actions">
-      <a href="#register" class="btn btn--primary">
-        Зарегистрироваться — 10 000 ₽
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#program" class="btn btn--outline">Программа мероприятия</a>
+      <a href="#register" class="btn btn--primary">Записаться — 10 000 ₽ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#program" class="btn btn--outline">Программа интенсива</a>
     </div>
   </div>
 </section>
 
 <div class="glow-line"></div>
 
-<!-- ABOUT -->
 <section class="about">
-  <div class="section-label">О мероприятии</div>
-  <h2 class="section-title">Цифровые финансы — <span>новая реальность</span></h2>
+  <div class="section-label">Формат</div>
+  <h2 class="section-title">Не теория — <span>реальный обменник изнутри</span></h2>
   <div class="about__grid">
     <div class="about__text">
-      <p>Рынок цифровых активов стремительно трансформируется. Россия находится на пороге масштабных законодательных изменений, которые определят правила игры на годы вперёд. Те, кто войдёт в рынок сейчас, получат стратегическое преимущество.</p>
-      <p>На конференции в стенах легендарной бизнес-школы «Сколково» ведущие эксперты отрасли разберут глобальные тренды, правовые аспекты, вопросы безопасности и реальные бизнес-модели в сфере альтернативных финансов.</p>
-      <p>Это не абстрактная теория — это практические инструменты и возможность начать зарабатывать в одной из самых динамичных индустрий.</p>
+      <p>Это не конференция в аудитории с PowerPoint-слайдами. Мы привезём вас в действующий офис обменного пункта DimMarEx в Уфе, где вы своими глазами увидите все операционные процессы.</p>
+      <p>Вы проведёте день рядом с командой, которая ежедневно обрабатывает сделки: от приёма заявки и AML-проверки до проведения обмена и работы с CRM. После интенсива у вас не останется вопросов «а как это работает на самом деле».</p>
+      <p>Параллельно эксперты разберут правовые аспекты, безопасность и экономику обменного бизнеса — всё на реальных цифрах и кейсах из практики.</p>
     </div>
-    <div class="about__stats">
-      <div class="stat-card">
-        <div class="stat-card__value">$101 млрд</div>
-        <div class="stat-card__label">Прогнозируемый объём рынка цифровых активов в России к 2026 г.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">+174%</div>
-        <div class="stat-card__label">Рост децентрализованных транзакций в России</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">50+</div>
-        <div class="stat-card__label">Стран, в которых работает экосистема DimmarEX</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">2026</div>
-        <div class="stat-card__label">Год лицензирования — регулятор готовит новые правила</div>
-      </div>
+    <div class="about__features">
+      <div class="feature-item"><div class="feature-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h4>Наблюдение за живыми сделками</h4><p>Увидите полный цикл обмена в реальном времени</p></div></div>
+      <div class="feature-item"><div class="feature-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><h4>Работа в CRM-системе</h4><p>Практика в собственной платформе DimMarEx</p></div></div>
+      <div class="feature-item"><div class="feature-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>AML-проверки и безопасность</h4><p>Как фильтровать подозрительные транзакции</p></div></div>
+      <div class="feature-item"><div class="feature-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><h4>Индивидуальные переговоры</h4><p>Обсуждение запуска собственного обменника</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- WHY ATTEND -->
 <section class="why-attend">
-  <div class="section-label">Зачем приходить</div>
-  <h2 class="section-title">Почему стоит <span>посетить конференцию?</span></h2>
+  <div class="section-label">Зачем приезжать</div>
+  <h2 class="section-title">Почему стоит <span>посетить интенсив?</span></h2>
   <div class="accordion">
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Разобраться в рынке цифровых активов</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">Эксперты с реальным опытом на рынке расскажут, как устроена индустрия изнутри: от механизмов обмена до международных расчётов. Вы получите целостное понимание рынка, а не обрывочные знания из Telegram-каналов.</div>
-      </div>
-    </div>
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Узнать, как открыть легальный бизнес в сфере цифровых финансов</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">Юристы и действующие предприниматели покажут пошаговую модель: от регистрации и выбора формата до первых клиентов. Готовая бизнес-модель с понятной экономикой и поддержкой на старте.</div>
-      </div>
-    </div>
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Прояснить ближайшие тренды рынка на 2026 год</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">Лицензирование, цифровой рубль, новые правила для квалифицированных инвесторов — всё это уже на горизонте. Вы узнаете, к чему готовиться и как занять позицию до того, как конкуренция ужесточится.</div>
-      </div>
-    </div>
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Получить контакты и войти в сообщество</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">В зале будут инвесторы, действующие владельцы обменников, эксперты по безопасности и представители финтех-компаний. Один правильный контакт может окупить участие многократно.</div>
-      </div>
-    </div>
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Научиться защищать свои активы от мошенников</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">Специалист по кибер-безопасности разберёт реальные кейсы потерь и схемы, которые используют злоумышленники. Практические рекомендации, которые вы сможете применить сразу после конференции.</div>
-      </div>
-    </div>
-
-    <div class="accordion__item">
-      <div class="accordion__header" onclick="toggleAccordion(this)">
-        <h3>Увидеть изнутри, как работает успешная франшиза</h3>
-        <div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-      </div>
-      <div class="accordion__body">
-        <div class="accordion__body-inner">Действующий партнёр поделится реальными цифрами и опытом: сколько вложил, сколько зарабатывает, с какими трудностями столкнулся. Без приукрашивания — только факты и личная история.</div>
-      </div>
-    </div>
-
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Разобраться в рынке цифровых активов</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">Не по учебникам и YouTube — а на примере действующего бизнеса. Вы увидите реальные объёмы, маржинальность и операционку обменного пункта, который работает каждый день.</div></div></div>
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Узнать, как открыть легальный бизнес в сфере цифровых финансов</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">Юристы и основатели покажут пошаговую модель: регистрация, правовой статус, аккредитация на мониторингах, первые клиенты. Готовая бизнес-модель с франшизной поддержкой на каждом этапе.</div></div></div>
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Прояснить ближайшие тренды рынка на 2026 год</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">Лицензирование, цифровой рубль, ограничения для неквалифицированных инвесторов — всё это уже на горизонте. Узнайте, к чему готовиться и как занять позицию до ужесточения конкуренции.</div></div></div>
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Потрогать бизнес руками — не на слайдах</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">Это главное отличие интенсива от обычных мероприятий. Вы будете находиться в реальном офисе, наблюдать за работой операторов, задавать вопросы прямо в процессе и понимать каждый этап.</div></div></div>
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Научиться защищать активы от мошенников</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">Специалист по кибер-безопасности разберёт реальные кейсы потерь и актуальные схемы мошенников. Практические рекомендации, которые защитят и вас, и ваших будущих клиентов.</div></div></div>
+    <div class="accordion__item"><div class="accordion__header" onclick="toggleAccordion(this)"><h3>Получить контакты и войти в сообщество партнёров</h3><div class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="accordion__body"><div class="accordion__body-inner">В Уфу приедут предприниматели со всей России, которые рассматривают запуск обменного бизнеса. Плюс вы познакомитесь с действующими партнёрами сети и основателями лично.</div></div></div>
   </div>
 </section>
 
-<!-- PROGRAM -->
 <section class="program" id="program">
   <div class="section-label">Программа</div>
-  <h2 class="section-title">Полный день <span>погружения в индустрию</span></h2>
+  <h2 class="section-title">Полный день <span>внутри обменного пункта</span></h2>
   <div class="timeline">
-
-    <div class="timeline__item">
-      <div class="timeline__time">10:00</div>
-      <div class="timeline__content">
-        <h3>Сбор участников и бизнес-завтрак</h3>
-        <p>Нетворкинг за завтраком в атмосфере бизнес-школы мирового уровня</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">10:30</div>
-      <div class="timeline__content">
-        <h3>Приветствие и знакомство участников</h3>
-        <p>Представление спикеров, обзор программы дня</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">11:00</div>
-      <div class="timeline__content">
-        <h3>Глобальные тенденции на рынке цифровых финансов</h3>
-        <p>Перспективы, риски, возможности — куда движется индустрия и где найти точки входа</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">12:00</div>
-      <div class="timeline__content">
-        <h3>Юридический и правовой статус цифровых активов в России</h3>
-        <p>Перспективы законодательных изменений и лицензирование — что ждёт рынок в 2026–2027</p>
-      </div>
-    </div>
-
-    <div class="timeline__item timeline__item--break">
-      <div class="timeline__time">13:00</div>
-      <div class="timeline__content">
-        <h3>Обед</h3>
-        <p>Нетворкинг и неформальное общение</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">14:00</div>
-      <div class="timeline__content">
-        <h3>Безопасность в сфере цифровых финансов</h3>
-        <p>Распространённые схемы мошенничества и защита активов — кейсы и практические рекомендации</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">15:00</div>
-      <div class="timeline__content">
-        <h3>Как устроен бизнес по обмену цифровых активов</h3>
-        <p>Правовой статус обменника и перспективы этого бизнеса в России</p>
-      </div>
-    </div>
-
-    <div class="timeline__item timeline__item--highlight">
-      <div class="timeline__time">15:30</div>
-      <div class="timeline__content">
-        <h3>Бизнес вместе с сильными партнёрами</h3>
-        <p>Как зарабатывать на обмене цифровых активов вместе с DimMar Exchange — готовая бизнес-модель и экосистема</p>
-      </div>
-    </div>
-
-    <div class="timeline__item timeline__item--break">
-      <div class="timeline__time">16:00</div>
-      <div class="timeline__content">
-        <h3>Кофе-брейк</h3>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">16:30</div>
-      <div class="timeline__content">
-        <h3>Отзыв о франшизе от действующего партнёра</h3>
-        <p>Реальный опыт, цифры и история успеха</p>
-      </div>
-    </div>
-
-    <div class="timeline__item">
-      <div class="timeline__time">17:00</div>
-      <div class="timeline__content">
-        <h3>Сессия «Вопрос — Ответ»</h3>
-        <p>Открытый диалог с экспертами — любые вопросы про рынок и бизнес</p>
-      </div>
-    </div>
-
-    <div class="timeline__item timeline__item--highlight">
-      <div class="timeline__time">17:30</div>
-      <div class="timeline__content">
-        <h3>Индивидуальные собеседования с потенциальными партнёрами</h3>
-        <p>Подписание соглашений о намерениях по запуску бизнеса</p>
-      </div>
-    </div>
-
-    <div class="timeline__item timeline__item--break">
-      <div class="timeline__time">19:00</div>
-      <div class="timeline__content">
-        <h3>Ужин</h3>
-        <p>Завершающий нетворкинг в кругу единомышленников</p>
-      </div>
-    </div>
-
+    <div class="timeline__item"><div class="timeline__time">10:00</div><div class="timeline__content"><h3>Сбор участников и знакомство</h3><p>Встречаемся в офисе DimMarEx. Кофе, знакомство, вводный брифинг</p></div></div>
+    <div class="timeline__item"><div class="timeline__time">10:30</div><div class="timeline__content"><h3>Экскурсия по офису обменного пункта</h3><p>Рабочие места операторов, серверная, система видеонаблюдения, организация безопасности</p></div></div>
+    <div class="timeline__item timeline__item--highlight"><div class="timeline__time">11:00</div><div class="timeline__content"><h3>Демонстрация реальных сделок</h3><p>Наблюдаем за обработкой заявок в CRM, проведением AML-проверок, исполнением обменов. Вопросы операторам в реальном времени</p></div></div>
+    <div class="timeline__item"><div class="timeline__time">12:00</div><div class="timeline__content"><h3>Правовой статус обменника в России</h3><p>Юридическая структура, налогообложение, перспективы лицензирования 2026–2027. Как работать легально уже сейчас</p></div></div>
+    <div class="timeline__item timeline__item--break"><div class="timeline__time">13:00</div><div class="timeline__content"><h3>Обед</h3><p>Нетворкинг и неформальное общение с командой</p></div></div>
+    <div class="timeline__item"><div class="timeline__time">14:00</div><div class="timeline__content"><h3>Безопасность и антифрод</h3><p>Как распознавать мошенников, блокировать подозрительные транзакции и не попасть под «антидроп». Реальные кейсы от крипто-детектива</p></div></div>
+    <div class="timeline__item"><div class="timeline__time">15:00</div><div class="timeline__content"><h3>Экономика обменного бизнеса</h3><p>Спред, оборотный капитал, операционные расходы, юнит-экономика. Сколько зарабатывает действующий обменник — на реальных цифрах</p></div></div>
+    <div class="timeline__item timeline__item--highlight"><div class="timeline__time">15:30</div><div class="timeline__content"><h3>Франшиза DimMarEx: как запустить свой обменник</h3><p>Пакеты, условия, поддержка, сроки запуска. Что входит в паушальный взнос и какой результат получают действующие партнёры</p></div></div>
+    <div class="timeline__item timeline__item--break"><div class="timeline__time">16:00</div><div class="timeline__content"><h3>Кофе-брейк</h3></div></div>
+    <div class="timeline__item"><div class="timeline__time">16:30</div><div class="timeline__content"><h3>Отзыв действующего партнёра франшизы</h3><p>Реальный опыт, цифры, трудности и выводы — из первых уст</p></div></div>
+    <div class="timeline__item"><div class="timeline__time">17:00</div><div class="timeline__content"><h3>Сессия «Вопрос — Ответ»</h3><p>Открытый диалог с основателями и экспертами</p></div></div>
+    <div class="timeline__item timeline__item--highlight"><div class="timeline__time">17:30</div><div class="timeline__content"><h3>Индивидуальные переговоры</h3><p>Обсуждение условий запуска, подписание соглашений о намерениях</p></div></div>
+    <div class="timeline__item timeline__item--break"><div class="timeline__time">19:00</div><div class="timeline__content"><h3>Ужин</h3><p>Завершающий нетворкинг в кругу единомышленников</p></div></div>
   </div>
 </section>
 
-<!-- SPEAKERS -->
 <section class="speakers" id="speakers">
-  <div class="section-label">Спикеры</div>
-  <h2 class="section-title">Эксперты, которые <span>формируют рынок</span></h2>
+  <div class="section-label">Спикеры и наставники</div>
+  <h2 class="section-title">Команда, которая <span>проведёт вас через интенсив</span></h2>
   <div class="speakers__grid">
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar"><img src="speaker1.png" alt="Марат Усманов"></div>
-      <div class="speaker-card__name">Марат Усманов</div>
-      <div class="speaker-card__role">Учредитель DimmarEX</div>
-      <div class="speaker-card__bio">Основатель DIMMAR EXCHANGE. Предприниматель с опытом создания бизнесов с нуля — от строительной компании с 1000+ сотрудников до международной финтех-экосистемы.</div>
-    </div>
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar"><img src="speaker2.png" alt="Дмитрий Мансуров"></div>
-      <div class="speaker-card__name">Дмитрий Мансуров</div>
-      <div class="speaker-card__role">Главный эксперт по ВЭД</div>
-      <div class="speaker-card__bio">17 лет в финансах и недвижимости. Два высших образования и степень MBA, преподавал в РАНХиГС. Более 10 лет — советник вице-спикера Мосгордумы.</div>
-    </div>
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar"><img src="speaker3.png" alt="Сергей Маслов"></div>
-      <div class="speaker-card__name">Сергей Маслов</div>
-      <div class="speaker-card__role">Крипто-евангелист</div>
-      <div class="speaker-card__bio">IT-герой и заядлый криптан. Успел поработать в большинстве заметных бирж и кошельков. Невероятная экспертиза рынка цифровых активов.</div>
-    </div>
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar"><img src="speaker4.png" alt="Семён Сарапулов"></div>
-      <div class="speaker-card__name">Семён Сарапулов</div>
-      <div class="speaker-card__role">Эксперт по масштабированию</div>
-      <div class="speaker-card__bio">Серийный предприниматель, основатель крупнейших франчайзинговых сетей, инвестор, ментор и стратег с опытом экзита и масштабирования бизнесов.</div>
-    </div>
-
-    <div class="speaker-card">
-      <div class="speaker-card__avatar"><img src="speaker5.png" alt="Евгений — Кибер Ёж"></div>
-      <div class="speaker-card__name">Евгений</div>
-      <div class="speaker-card__role">Кибер-безопасность</div>
-      <div class="speaker-card__bio">Специалист по кибер-безопасности, крипто-детектив. Основатель компании «Кибер Ёж». Расследование инцидентов и защита цифровых активов.</div>
-    </div>
-
+    <div class="speaker-card"><div class="speaker-card__avatar"><img src="speaker1.png" alt="Марат Усманов"></div><div class="speaker-card__name">Марат Усманов</div><div class="speaker-card__role">Учредитель DimmarEX</div><div class="speaker-card__bio">Основатель DIMMAR EXCHANGE. Предприниматель с опытом создания бизнесов с нуля — от строительной компании с 1000+ сотрудников до международной финтех-экосистемы.</div></div>
+    <div class="speaker-card"><div class="speaker-card__avatar"><img src="speaker2.png" alt="Дмитрий Мансуров"></div><div class="speaker-card__name">Дмитрий Мансуров</div><div class="speaker-card__role">Главный эксперт по ВЭД</div><div class="speaker-card__bio">17 лет в финансах и недвижимости. Два высших образования и степень MBA, преподавал в РАНХиГС. Более 10 лет — советник вице-спикера Мосгордумы.</div></div>
+    <div class="speaker-card"><div class="speaker-card__avatar"><img src="speaker3.png" alt="Сергей Маслов"></div><div class="speaker-card__name">Сергей Маслов</div><div class="speaker-card__role">Крипто-евангелист</div><div class="speaker-card__bio">IT-герой и заядлый криптан. Успел поработать в большинстве заметных бирж и кошельков. Невероятная экспертиза рынка цифровых активов.</div></div>
+    <div class="speaker-card"><div class="speaker-card__avatar"><img src="speaker4.png" alt="Семён Сарапулов"></div><div class="speaker-card__name">Семён Сарапулов</div><div class="speaker-card__role">Эксперт по масштабированию</div><div class="speaker-card__bio">Серийный предприниматель, основатель крупнейших франчайзинговых сетей, инвестор, ментор и стратег с опытом экзита и масштабирования бизнесов.</div></div>
+    <div class="speaker-card"><div class="speaker-card__avatar"><img src="speaker5.png" alt="Евгений — Кибер Ёж"></div><div class="speaker-card__name">Евгений</div><div class="speaker-card__role">Кибер-безопасность</div><div class="speaker-card__bio">Специалист по кибер-безопасности, крипто-детектив. Основатель компании «Кибер Ёж». Расследование инцидентов и защита цифровых активов.</div></div>
   </div>
 </section>
 
-<!-- VENUE -->
-<section class="venue">
-  <div class="section-label">Площадка</div>
-  <h2 class="section-title">Бизнес-школа <span>«Сколково»</span></h2>
-  <div class="venue__card">
-    <div class="venue__image">
-      <img src="skolkovo.png" alt="Бизнес-школа Сколково">
-    </div>
-    <div class="venue__info">
-      <h3>Московская школа управления «Сколково»</h3>
-      <p class="venue-addr">Новая Москва, Сколково, ул. Новая, д. 100</p>
-      <ul class="venue__features">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          Аудитория международного класса
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          Бизнес-завтрак, обед и ужин включены
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          Зона нетворкинга и переговоров
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-          Удобная транспортная доступность
-        </li>
-      </ul>
-    </div>
+<section class="hotels">
+  <div class="section-label">Где остановиться</div>
+  <h2 class="section-title">Рекомендуемые гостиницы <span>в Уфе</span></h2>
+  <div class="hotels__grid">
+    <div class="hotel-card"><div class="hotel-card__stars">★★★</div><div class="hotel-card__name">Hampton by Hilton Ufa</div><div class="hotel-card__rating">Рейтинг: <strong>4.6</strong> · 1 500+ отзывов</div><div class="hotel-card__addr">ул. 50 лет Октября, 17, Уфа</div><a href="tel:+73472260626" class="hotel-card__phone">+7 347 226-06-26</a></div>
+    <div class="hotel-card"><div class="hotel-card__stars">★★★★</div><div class="hotel-card__name">Hilton Garden Inn Ufa Riverside</div><div class="hotel-card__rating">Рейтинг: <strong>4.7</strong> · 2 000+ отзывов</div><div class="hotel-card__addr">ул. Аксакова, 4, Уфа</div><a href="tel:+73472939000" class="hotel-card__phone">+7 347 293-90-00</a></div>
+    <div class="hotel-card"><div class="hotel-card__stars">★★★★</div><div class="hotel-card__name">Гостиница «Башкирия»</div><div class="hotel-card__rating">Рейтинг: <strong>4.7</strong> · 1 600+ отзывов</div><div class="hotel-card__addr">ул. Ленина, 25/29, Уфа</div><a href="tel:+73472790000" class="hotel-card__phone">+7 347 279-00-00</a></div>
   </div>
 </section>
 
-<!-- CTA + REGISTRATION FORM -->
+<div class="bonus-banner">
+  <div class="bonus-banner__inner">
+    <div class="bonus-banner__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+    <div class="bonus-banner__text">
+      <h3>Расходы зачтём <span>в паушальный взнос</span></h3>
+      <p>При покупке франшизы DimMarEx стоимость участия в интенсиве (10 000 ₽) и ваши расходы на дорогу и проживание в Уфе будут засчитаны в паушальный взнос. Фактически ваша поездка становится бесплатной.</p>
+    </div>
+  </div>
+</div>
+
 <section class="cta" id="register">
   <div class="section-label">Участие</div>
-  <h2 class="section-title">Одно решение меняет <span>всё</span></h2>
+  <h2 class="section-title">Увидеть бизнес <span>изнутри</span></h2>
   <div class="cta__price">10 000 ₽</div>
   <div class="cta__price-label">стоимость участия · количество мест ограничено</div>
-
   <div class="reg-form" id="regForm">
     <input type="text" class="reg-form__input" id="regName" placeholder="Ваше имя" required>
     <input type="tel" class="reg-form__input" id="regPhone" placeholder="Телефон" required>
     <input type="email" class="reg-form__input" id="regEmail" placeholder="E-mail" required>
-    <button type="button" class="reg-form__btn" id="regBtn" onclick="submitForm()">
-      Зарегистрироваться и оплатить
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
+    <button type="button" class="reg-form__btn" id="regBtn" onclick="submitForm()">Записаться на интенсив <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     <div class="reg-form__status" id="regStatus"></div>
   </div>
-
-  <p class="cta__note">Включено: доступ на все сессии, бизнес-завтрак, обед, кофе-брейк, ужин, материалы конференции и возможность индивидуальных переговоров с экспертами.</p>
+  <p class="cta__note">Включено: доступ на все сессии, обед, кофе-брейк, ужин, раздаточные материалы, индивидуальные переговоры с основателями. При покупке франшизы — расходы на поездку зачтутся в паушальный взнос.</p>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__brand">DIMMAR<span>EX</span></div>
@@ -1173,72 +168,9 @@ body::before {
 </footer>
 
 <script>
-/* Accordion */
-function toggleAccordion(header) {
-  const item = header.parentElement;
-  const body = item.querySelector('.accordion__body');
-  const isActive = item.classList.contains('active');
-
-  document.querySelectorAll('.accordion__item.active').forEach(el => {
-    el.classList.remove('active');
-    el.querySelector('.accordion__body').style.maxHeight = null;
-  });
-
-  if (!isActive) {
-    item.classList.add('active');
-    body.style.maxHeight = body.scrollHeight + 'px';
-  }
-}
-
-/* Form submission to Telegram bot */
-const BOT_TOKEN = '8447258387:AAFEutiJ1gxDWyPtKZS6HC9cQN3U2L-X6q4';
-const CHAT_ID = '-5172747102';
-const PAYMENT_URL = 'https://yookassa.ru/my/i/aYnZ0wbzOY-O/l';
-
-async function submitForm() {
-  const name = document.getElementById('regName').value.trim();
-  const phone = document.getElementById('regPhone').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const btn = document.getElementById('regBtn');
-  const status = document.getElementById('regStatus');
-
-  if (!name || !phone || !email) {
-    status.className = 'reg-form__status reg-form__status--error';
-    status.textContent = 'Пожалуйста, заполните все поля';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Отправка...';
-  status.textContent = '';
-
-  const message = `🎟 Новая регистрация — ФинТех Сколково\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 E-mail: ${email}\n\n📅 Конференция 16 марта 2026`;
-
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'HTML' })
-    });
-
-    if (res.ok) {
-      status.className = 'reg-form__status reg-form__status--success';
-      status.textContent = '✓ Заявка отправлена! Переходим к оплате...';
-      setTimeout(() => { window.open(PAYMENT_URL, '_blank'); }, 1200);
-    } else {
-      throw new Error('Telegram API error');
-    }
-  } catch (e) {
-    // Even if Telegram fails, still redirect to payment
-    status.className = 'reg-form__status reg-form__status--success';
-    status.textContent = '✓ Переходим к оплате...';
-    setTimeout(() => { window.open(PAYMENT_URL, '_blank'); }, 800);
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = 'Зарегистрироваться и оплатить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-}
+function toggleAccordion(header){const item=header.parentElement;const body=item.querySelector('.accordion__body');const isActive=item.classList.contains('active');document.querySelectorAll('.accordion__item.active').forEach(el=>{el.classList.remove('active');el.querySelector('.accordion__body').style.maxHeight=null});if(!isActive){item.classList.add('active');body.style.maxHeight=body.scrollHeight+'px'}}
+const BOT_TOKEN='8447258387:AAFEutiJ1gxDWyPtKZS6HC9cQN3U2L-X6q4';const CHAT_ID='-5172747102';const PAYMENT_URL='https://yookassa.ru/my/i/aYnZ0wbzOY-O/l';
+async function submitForm(){const name=document.getElementById('regName').value.trim();const phone=document.getElementById('regPhone').value.trim();const email=document.getElementById('regEmail').value.trim();const btn=document.getElementById('regBtn');const status=document.getElementById('regStatus');if(!name||!phone||!email){status.className='reg-form__status reg-form__status--error';status.textContent='Пожалуйста, заполните все поля';return}btn.disabled=true;btn.textContent='Отправка...';status.textContent='';const message=`🎟 Новая заявка — Интенсив Уфа\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 E-mail: ${email}\n\n📅 Интенсив 28 марта 2026, Уфа`;try{const res=await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:message,parse_mode:'HTML'})});if(res.ok){status.className='reg-form__status reg-form__status--success';status.textContent='✓ Заявка отправлена! Переходим к оплате...';setTimeout(()=>{window.open(PAYMENT_URL,'_blank')},1200)}else{throw new Error('err')}}catch(e){status.className='reg-form__status reg-form__status--success';status.textContent='✓ Переходим к оплате...';setTimeout(()=>{window.open(PAYMENT_URL,'_blank')},800)}btn.disabled=false;btn.innerHTML='Записаться на интенсив <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'}
 </script>
-
 </body>
 </html>
