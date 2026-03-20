@@ -457,10 +457,10 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 </div>
 <div class="spacer"></div>
 <div class="highlight-box" style="padding:24px">
-<div style="font-size:14px;color:var(--t3);margin-bottom:4px">Средний чек с одного клиента</div>
-<div style="font-size:36px;font-weight:800;color:var(--gold)">$73 USDT</div>
-<div style="font-size:14px;color:var(--t3);margin-top:8px">~350 заказов в месяц</div>
-<div style="font-size:14px;color:var(--t3)">30 минут на один обмен</div>
+<div style="font-size:14px;color:var(--t3);margin-bottom:4px">Средний доход с одного клиента</div>
+<div style="font-size:36px;font-weight:800;color:var(--gold)">64 USDT</div>
+<div style="font-size:14px;color:var(--t2);margin-top:4px">Средний чек 8 000 USDT × спред 0,8%</div>
+<div style="font-size:14px;color:var(--t3);margin-top:8px">~350 заказов в месяц · 30 минут на обмен</div>
 </div>
 </div>
 </div>
@@ -495,7 +495,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <div class="card" style="padding:24px;margin-bottom:16px">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
 <span style="font-size:14px;color:var(--t3)">Доход с 1 сделки</span>
-<span style="font-family:var(--mono);font-size:15px;color:var(--teal)">64 USDT ≈ 4 992 ₽</span>
+<span id="calcDealIncome" style="font-family:var(--mono);font-size:15px;color:var(--teal)">64 USDT ≈ 4 992 ₽</span>
 </div>
 </div>
 <div class="card" style="padding:24px;margin-bottom:16px">
@@ -505,10 +505,11 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 </div>
 </div>
 <div class="card" style="padding:24px;margin-bottom:16px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+<div style="display:flex;justify-content:space-between;align-items:center">
 <span style="font-size:14px;color:var(--t3)">Курс USDT/RUB</span>
-<span style="font-family:var(--mono);font-size:15px">78 ₽</span>
+<span id="calcRate" style="font-family:var(--mono);font-size:15px;color:var(--gold)">загрузка...</span>
 </div>
+<div id="rateStatus" style="font-size:11px;color:var(--t3);margin-top:4px;text-align:right"></div>
 </div>
 <div style="font-size:12px;color:var(--t3);margin-top:8px">Рекомендуемый оборотный капитал: от 50 000 USDT</div>
 </div>
@@ -803,19 +804,60 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <script>
 function closeNav(){document.getElementById('navDrop').classList.remove('open');document.getElementById('navToggle').classList.remove('open')}
 
+let usdtRate=78;
+const SPREAD=0.008;
+const AVG_CHECK=8000;
+const EXPENSES=200000;
+
 function updateCalc(v){
 v=parseInt(v);
 document.getElementById('calcDeals').textContent=v;
-const revenuePerDeal=8000*0.008*78;
+const incomeUsdt=AVG_CHECK*SPREAD;
+const revenuePerDeal=incomeUsdt*usdtRate;
 const revenue=Math.round(revenuePerDeal*v);
-const expenses=200000;
-const profit=revenue-expenses;
+const profit=revenue-EXPENSES;
 document.getElementById('calcRevenue').textContent=revenue.toLocaleString('ru-RU')+' ₽';
 const pEl=document.getElementById('calcProfit');
-if(profit>=0){pEl.textContent=profit.toLocaleString('ru-RU')+' ₽';pEl.style.background='var(--grad-gold)'}
-else{pEl.textContent=profit.toLocaleString('ru-RU')+' ₽';pEl.style.background='linear-gradient(135deg,#ff6b6b,#ee5a24)'}
+pEl.textContent=(profit>=0?'':'')+profit.toLocaleString('ru-RU')+' ₽';
+pEl.style.background=profit>=0?'var(--grad-gold)':'linear-gradient(135deg,#ff6b6b,#ee5a24)';
 pEl.style.webkitBackgroundClip='text';pEl.style.webkitTextFillColor='transparent';pEl.style.backgroundClip='text';
 }
+
+function updateRateDisplay(){
+const incomeUsdt=AVG_CHECK*SPREAD;
+const incomeRub=Math.round(incomeUsdt*usdtRate);
+document.getElementById('calcDealIncome').textContent=incomeUsdt+' USDT ≈ '+incomeRub.toLocaleString('ru-RU')+' ₽';
+document.getElementById('calcRate').textContent=usdtRate.toFixed(2)+' ₽';
+const slider=document.getElementById('calcSlider');
+if(slider)updateCalc(slider.value);
+}
+
+async function fetchRate(){
+const rateEl=document.getElementById('calcRate');
+const statusEl=document.getElementById('rateStatus');
+try{
+const resp=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=rub');
+if(!resp.ok)throw new Error('API error');
+const data=await resp.json();
+if(data.tether&&data.tether.rub){
+usdtRate=data.tether.rub;
+statusEl.textContent='Курс обновлён · CoinGecko · '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+statusEl.style.color='var(--teal)';
+}else throw new Error('No data');
+}catch(e){
+try{
+const resp2=await fetch('https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=RUB');
+if(resp2.ok){const d2=await resp2.json();if(d2.RUB){usdtRate=d2.RUB;statusEl.textContent='Курс обновлён · CryptoCompare · '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});statusEl.style.color='var(--teal)';updateRateDisplay();return}}
+}catch(e2){}
+usdtRate=78;
+statusEl.textContent='Не удалось загрузить — используется 78 ₽';
+statusEl.style.color='var(--red)';
+}
+updateRateDisplay();
+}
+
+fetchRate();
+setInterval(fetchRate,300000);
 
 const fadeObs=new IntersectionObserver(es=>{
 es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fadeObs.unobserve(e.target)}});
