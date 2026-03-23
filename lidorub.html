@@ -789,15 +789,19 @@ const steps = [
     content: () => `
       <div class="speech">
         <div class="speech-label">Говорит менеджер</div>
-        <p>Добрый день, <strong>[Имя]</strong>! Меня зовут <strong>[Имя менеджера]</strong>, я из команды DimMarEx. Вы оставляли заявку на нашу неоФраншизу крипто-обменника — это так?</p>
+        <p>Добрый день! Меня зовут <strong>[Имя менеджера]</strong>, компания DimMarEx. Вам недавно звонил наш бот с предложением по крипто-обменному бизнесу — и вы проявили интерес. Я хотел бы коротко рассказать подробности. Подскажите, как я могу к вам обращаться?</p>
+      </div>
+      <div class="tg-input-group">
+        <label>Имя клиента</label>
+        <input type="text" class="tg-input" id="nameInput" placeholder="Введите имя клиента..." oninput="onNameInput()">
       </div>
       <div class="note">
         <span class="note-icon">💡</span>
-        <span>Если не подтверждает — уточнить источник лида. Если ошибка — вежливо попрощаться.</span>
+        <span>Если не помнит звонок бота — коротко напомнить: <em>«Вам поступил звонок с информацией о возможности запуска собственного крипто-обменника. Вы нажали кнопку "интересно" — вот я и перезваниваю.»</em> Если ошибка — вежливо попрощаться.</span>
       </div>
       <div class="speech">
         <div class="speech-label">Говорит менеджер</div>
-        <p>Отлично! Я коротко расскажу суть нашего предложения и задам пару вопросов, чтобы понять, насколько мы друг другу подходим. Займёт буквально 5 минут — удобно сейчас?</p>
+        <p>Очень приятно, <strong class="client-name-preview">${state.clientName || '___'}</strong>! Я коротко расскажу суть предложения и задам пару вопросов, чтобы понять, насколько мы друг другу подходим. Займёт буквально 5 минут — удобно сейчас?</p>
       </div>
       <div class="note">
         <span class="note-icon">⏰</span>
@@ -858,7 +862,7 @@ const steps = [
     content: () => `
       <div class="speech">
         <div class="speech-label">Говорит менеджер</div>
-        <p><strong>[Имя]</strong>, раз мы говорим о крипто-обменнике, скажите — вы сами уже как-то взаимодействуете с криптовалютой? Может, есть кошелёк, аккаунт на бирже?</p>
+        <p><strong>${state.clientName || 'Клиент'}</strong>, раз мы говорим о крипто-обменнике, скажите — вы сами уже как-то взаимодействуете с криптовалютой? Может, есть кошелёк, аккаунт на бирже?</p>
       </div>
       <p style="font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">Отметьте ответ клиента:</p>
       <div class="options-grid cols-3">
@@ -961,7 +965,7 @@ const steps = [
         return `
           <div class="speech">
             <div class="speech-label">Говорит менеджер</div>
-            <p><strong>[Имя]</strong>, спасибо за ответы! Вижу, что вам точно имеет смысл узнать подробности. Предлагаю назначить короткую Zoom-встречу с нашим менеджером — он покажет финансовую модель, расскажет про юридическую схему, технологию и ответит на все вопросы. Встреча займёт около 40–60 минут. Когда вам удобнее — в ближайшие пару дней?</p>
+            <p><strong>${state.clientName || 'Клиент'}</strong>, спасибо за ответы! Вижу, что вам точно имеет смысл узнать подробности. Предлагаю назначить короткую Zoom-встречу с нашим менеджером — он покажет финансовую модель, расскажет про юридическую схему, технологию и ответит на все вопросы. Встреча займёт около 40–60 минут. Когда вам удобнее — в ближайшие пару дней?</p>
           </div>
           <div class="note">
             <span class="note-icon">📅</span>
@@ -988,7 +992,7 @@ const steps = [
           </div>
           <div class="speech">
             <div class="speech-label">Говорит менеджер</div>
-            <p><strong>[Имя]</strong>, спасибо за разговор! На данном этапе рекомендую подписаться на наш Telegram-канал — там мы публикуем кейсы и разборы по бизнесу обменников. Когда будете готовы вернуться к вопросу — напишите, мы всегда на связи.</p>
+            <p><strong>${state.clientName || 'Клиент'}</strong>, спасибо за разговор! На данном этапе рекомендую подписаться на наш Telegram-канал — там мы публикуем кейсы и разборы по бизнесу обменников. Когда будете готовы вернуться к вопросу — напишите, мы всегда на связи.</p>
           </div>
           <div class="tg-input-group">
             <label>Telegram клиента (если даст)</label>
@@ -1026,8 +1030,8 @@ const steps = [
       }
 
       const closingSpeech = q
-        ? 'Итак, я записал вас на [дата, время]. Ссылку на Zoom и все материалы пришлю вам в Телеграм. Если возникнут вопросы до встречи — смело пишите туда же. Хорошего дня, [Имя]!'
-        : 'Спасибо за разговор, [Имя]! Подписывайтесь на наш ТГ-канал, там много полезного. Когда будете готовы — обращайтесь. Хорошего дня!';
+        ? `Итак, я записал вас на [дата, время]. Ссылку на Zoom и все материалы пришлю вам в Телеграм. Если возникнут вопросы до встречи — смело пишите туда же. Хорошего дня, ${state.clientName || ''}!`
+        : `Спасибо за разговор, ${state.clientName || ''}! Подписывайтесь на наш ТГ-канал, там много полезного. Когда будете готовы — обращайтесь. Хорошего дня!`;
 
       const checklistItems = [
         'Занести результаты квалификации в CRM',
@@ -1070,6 +1074,7 @@ const steps = [
 const state = {
   current: 0,
   answers: {},   // crypto, timing, budget → green/yellow/red
+  clientName: '',
   tg: ''
 };
 
@@ -1134,6 +1139,10 @@ function render() {
       if (card) card.classList.add('selected');
     }
   }
+  if (step.id === 'greeting') {
+    const inp = document.getElementById('nameInput');
+    if (inp) inp.value = state.clientName;
+  }
   if (step.id === 'zoom' || step.id === 'result') {
     const inp = document.getElementById('tgInput');
     if (inp) inp.value = state.tg;
@@ -1142,6 +1151,7 @@ function render() {
 
 function canProceed() {
   const step = steps[state.current];
+  if (step.id === 'greeting' && !state.clientName.trim()) return false;
   if (step.qualification && !state.answers[step.qualification]) return false;
   return true;
 }
@@ -1154,6 +1164,19 @@ function selectOption(el) {
   el.classList.add('selected');
   state.answers[q] = val;
   document.getElementById('nextBtn').disabled = false;
+}
+
+function onNameInput() {
+  const inp = document.getElementById('nameInput');
+  if (inp) {
+    state.clientName = inp.value;
+    // Live-update the preview name
+    const preview = document.querySelector('.client-name-preview');
+    if (preview) preview.textContent = inp.value || '___';
+    // Enable/disable next button
+    const btn = document.getElementById('nextBtn');
+    if (btn) btn.disabled = !canProceed();
+  }
 }
 
 function onTgInput() {
@@ -1186,6 +1209,7 @@ function goToStep(i) {
 function resetScript() {
   state.current = 0;
   state.answers = {};
+  state.clientName = '';
   state.tg = '';
   render();
 }
