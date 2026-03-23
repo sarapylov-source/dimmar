@@ -662,6 +662,55 @@ body {
   font-weight: 800;
 }
 
+/* ─── STAT MINI CARDS ─── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+.stat-mini {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 12px;
+  text-align: center;
+}
+.stat-mini-num {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: #f59e0b;
+  line-height: 1.2;
+}
+.stat-mini-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.highlight-box {
+  background: linear-gradient(135deg, rgba(245,158,11,.08), rgba(59,130,246,.08));
+  border: 1px solid rgba(245,158,11,.2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.highlight-box .hl-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.highlight-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.highlight-box strong { color: #f59e0b; }
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 640px) {
   .options-grid.cols-3 { grid-template-columns: 1fr; }
@@ -670,6 +719,7 @@ body {
   .step-dots { gap: 4px; }
   .step-dot { width: 24px; height: 24px; font-size: 10px; }
   .modal { padding: 24px; }
+  .stat-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -766,7 +816,33 @@ const steps = [
       </div>
       <div class="speech">
         <div class="speech-label">Говорит менеджер</div>
-        <p>Мы называем это «неоФраншиза», потому что это больше, чем классическая франшиза: мы не просто передаём бренд, а становимся вашим технологическим партнёром.</p>
+        <p>Буквально пару цифр, чтобы вы понимали масштаб: по данным Chainalysis, за последний год через криптовалюту в России прошло <strong>$376 миллиардов</strong>. При этом 72% крипто-операций проходят именно через офлайн-обмен — и эта доля растёт. Рынок огромный, а инфраструктуры не хватает.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-mini">
+          <div class="stat-mini-num">$376 млрд</div>
+          <div class="stat-mini-label">крипто-оборот в РФ<br>за год (Chainalysis)</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num">72%</div>
+          <div class="stat-mini-label">операций —<br>офлайн-обмен</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num">35–50%</div>
+          <div class="stat-mini-label">годовых на<br>оборотный капитал</div>
+        </div>
+      </div>
+      <div class="speech">
+        <div class="speech-label">Говорит менеджер</div>
+        <p>Экономика бизнеса позволяет зарабатывать <strong>до 50% годовых на оборотный капитал</strong> — это одна из самых маржинальных ниш, которая сейчас доступна.</p>
+      </div>
+      <div class="highlight-box">
+        <span class="hl-icon">⚡</span>
+        <p>И самое важное — <strong>летом планируется принятие закона о лицензировании</strong> криптообменной деятельности. Те, кто выйдет на рынок сейчас, займут его первыми. А когда рынок станет регулируемым — порог входа резко вырастет. Сейчас — окно возможностей.</p>
+      </div>
+      <div class="speech">
+        <div class="speech-label">Говорит менеджер</div>
+        <p>Мы называем это «неоФраншиза», потому что это больше, чем классическая франшиза: мы не просто передаём бренд, а становимся вашим технологическим партнёром. DimMarEx будет оформлять лицензию на всех партнёров сети — это входит в нашу модель.</p>
       </div>
       <div class="note warn">
         <span class="note-icon">⚠️</span>
