@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DimMarEx · Маркетинговая стратегия привлечения партнёров</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#050508;
+  --s1:#0c0d12;
+  --s2:#13141c;
+  --s3:#1b1d28;
+  --s4:#242635;
+  --brd:rgba(255,255,255,0.05);
+  --t:#e6e7ec;
+  --td:#8c8ea0;
+  --tm:#55576a;
+  --gold:#f0b232;
+  --gold-d:rgba(240,178,50,0.08);
+  --cyan:#00e5c8;
+  --cyan-d:rgba(0,229,200,0.08);
+  --violet:#8b7cf6;
+  --violet-d:rgba(139,124,246,0.08);
+  --red:#ff5a5a;
+  --red-d:rgba(255,90,90,0.07);
+  --blue:#4da6ff;
+  --blue-d:rgba(77,166,255,0.08);
+  --green:#2ee89e;
+  --green-d:rgba(46,232,158,0.08);
+  --orange:#ff8f42;
+  --orange-d:rgba(255,143,66,0.08);
+  --pink:#f472b6;
+  --pink-d:rgba(244,114,182,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 10% 0%,rgba(240,178,50,0.05) 0%,transparent 50%),radial-gradient(ellipse at 90% 100%,rgba(0,229,200,0.04) 0%,transparent 50%);pointer-events:none;z-index:0}
+
+.wrap{max-width:1280px;margin:0 auto;padding:56px 32px 100px;position:relative;z-index:1}
+
+/* HEADER */
+.hero{margin-bottom:72px;position:relative}
+.hero-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:var(--gold-d);border:1px solid rgba(240,178,50,0.15);padding:6px 16px;border-radius:100px;display:inline-block;margin-bottom:20px}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:18px;color:var(--td);max-width:680px;line-height:1.6;font-weight:300}
+
+/* SECTION */
+.sec{margin-bottom:64px}
+.sec-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--tm);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--brd)}
+
+/* TARGET AUDIENCE CARDS */
+.audience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.aud-card{background:var(--s1);border:1px solid var(--brd);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.aud-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.1)}
+.aud-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.aud-card:nth-child(1) .aud-icon{background:var(--gold-d)}
+.aud-card:nth-child(2) .aud-icon{background:var(--cyan-d)}
+.aud-card:nth-child(3) .aud-icon{background:var(--violet-d)}
+.aud-card:nth-child(4) .aud-icon{background:var(--blue-d)}
+.aud-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.aud-desc{font-size:13px;color:var(--td);line-height:1.6}
+.aud-why{margin-top:12px;font-size:12px;padding:8px 12px;border-radius:8px;line-height:1.5}
+.aud-card:nth-child(1) .aud-why{background:var(--gold-d);color:var(--gold);border:1px solid rgba(240,178,50,0.1)}
+.aud-card:nth-child(2) .aud-why{background:var(--cyan-d);color:var(--cyan);border:1px solid rgba(0,229,200,0.1)}
+.aud-card:nth-child(3) .aud-why{background:var(--violet-d);color:var(--violet);border:1px solid rgba(139,124,246,0.1)}
+.aud-card:nth-child(4) .aud-why{background:var(--blue-d);color:var(--blue);border:1px solid rgba(77,166,255,0.1)}
+
+/* CHANNEL CARDS */
+.channels{display:flex;flex-direction:column;gap:14px}
+.ch{background:var(--s1);border:1px solid var(--brd);border-radius:18px;padding:32px;display:grid;grid-template-columns:56px 1fr auto;gap:24px;align-items:start;transition:transform .25s,border-color .3s}
+.ch:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.08)}
+
+.ch-num{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:700;line-height:1;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch:nth-child(1) .ch-num{color:var(--gold);background:var(--gold-d)}
+.ch:nth-child(2) .ch-num{color:var(--cyan);background:var(--cyan-d)}
+.ch:nth-child(3) .ch-num{color:var(--violet);background:var(--violet-d)}
+.ch:nth-child(4) .ch-num{color:var(--blue);background:var(--blue-d)}
+.ch:nth-child(5) .ch-num{color:var(--green);background:var(--green-d)}
+.ch:nth-child(6) .ch-num{color:var(--orange);background:var(--orange-d)}
+.ch:nth-child(7) .ch-num{color:var(--pink);background:var(--pink-d)}
+.ch:nth-child(8) .ch-num{color:var(--red);background:var(--red-d)}
+.ch:nth-child(9) .ch-num{color:var(--gold);background:var(--gold-d)}
+.ch:nth-child(10) .ch-num{color:var(--cyan);background:var(--cyan-d)}
+.ch:nth-child(11) .ch-num{color:var(--violet);background:var(--violet-d)}
+.ch:nth-child(12) .ch-num{color:var(--green);background:var(--green-d)}
+.ch:nth-child(13) .ch-num{color:var(--orange);background:var(--orange-d)}
+.ch:nth-child(14) .ch-num{color:var(--blue);background:var(--blue-d)}
+
+.ch-body{min-width:0}
+.ch-name{font-size:18px;font-weight:600;margin-bottom:6px;letter-spacing:-0.3px}
+.ch-text{font-size:14px;color:var(--td);line-height:1.65}
+.ch-text .hl{color:var(--t);font-weight:500}
+
+.ch-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.5px;padding:3px 10px;border-radius:100px;border:1px solid}
+.tag-hot{color:var(--gold);border-color:rgba(240,178,50,0.2);background:var(--gold-d)}
+.tag-auto{color:var(--cyan);border-color:rgba(0,229,200,0.2);background:var(--cyan-d)}
+.tag-manual{color:var(--violet);border-color:rgba(139,124,246,0.2);background:var(--violet-d)}
+.tag-paid{color:var(--orange);border-color:rgba(255,143,66,0.2);background:var(--orange-d)}
+.tag-free{color:var(--green);border-color:rgba(46,232,158,0.2);background:var(--green-d)}
+.tag-partner{color:var(--pink);border-color:rgba(244,114,182,0.2);background:var(--pink-d)}
+.tag-new{color:var(--red);border-color:rgba(255,90,90,0.2);background:var(--red-d)}
+
+.ch-meta{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;min-width:100px}
+.ch-effort,.ch-impact{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px;text-align:center}
+
+/* ORIGIN BADGE */
+.origin-badge{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:8px;display:inline-block}
+.origin-brainstorm{color:var(--gold);background:var(--gold-d);border:1px solid rgba(240,178,50,0.15)}
+.origin-new{color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,229,200,0.15)}
+
+/* PRIORITY MATRIX */
+.matrix-wrap{background:var(--s1);border:1px solid var(--brd);border-radius:18px;padding:36px;overflow:hidden}
+.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;min-height:360px;border-radius:12px;overflow:hidden;position:relative}
+.matrix::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border:1px solid var(--brd);border-radius:12px}
+.matrix-cell{padding:24px;position:relative}
+.matrix-cell:nth-child(1){background:rgba(46,232,158,0.04)}
+.matrix-cell:nth-child(2){background:rgba(240,178,50,0.04)}
+.matrix-cell:nth-child(3){background:rgba(77,166,255,0.04)}
+.matrix-cell:nth-child(4){background:rgba(139,124,246,0.04)}
+.matrix-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.matrix-cell:nth-child(1) .matrix-label{color:var(--green)}
+.matrix-cell:nth-child(2) .matrix-label{color:var(--gold)}
+.matrix-cell:nth-child(3) .matrix-label{color:var(--blue)}
+.matrix-cell:nth-child(4) .matrix-label{color:var(--violet)}
+.matrix-items{display:flex;flex-direction:column;gap:8px}
+.matrix-item{font-size:13px;color:var(--td);padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:6px;line-height:1.4}
+.matrix-axes{display:flex;justify-content:space-between;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--tm);letter-spacing:1px}
+
+/* FUNNEL VISUALIZATION */
+.funnel-visual{display:flex;flex-direction:column;align-items:center;gap:4px;padding:40px 20px}
+.funnel-step{border-radius:10px;display:flex;align-items:center;justify-content:center;padding:16px 24px;font-size:14px;font-weight:500;text-align:center;transition:transform .2s}
+.funnel-step:hover{transform:scale(1.02)}
+.fs1{width:100%;background:linear-gradient(90deg,rgba(240,178,50,0.12),rgba(240,178,50,0.06));border:1px solid rgba(240,178,50,0.15);color:var(--gold)}
+.fs2{width:82%;background:linear-gradient(90deg,rgba(0,229,200,0.12),rgba(0,229,200,0.06));border:1px solid rgba(0,229,200,0.15);color:var(--cyan)}
+.fs3{width:64%;background:linear-gradient(90deg,rgba(139,124,246,0.12),rgba(139,124,246,0.06));border:1px solid rgba(139,124,246,0.15);color:var(--violet)}
+.fs4{width:46%;background:linear-gradient(90deg,rgba(46,232,158,0.12),rgba(46,232,158,0.06));border:1px solid rgba(46,232,158,0.15);color:var(--green)}
+.fs5{width:30%;background:linear-gradient(90deg,rgba(255,143,66,0.15),rgba(255,143,66,0.08));border:1px solid rgba(255,143,66,0.2);color:var(--orange);font-weight:700}
+.funnel-arrow{color:var(--tm);font-size:18px}
+
+/* SUMMARY */
+.summary{background:var(--s1);border:1px solid rgba(240,178,50,0.1);border-radius:18px;padding:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px}
+.sum-item{text-align:center}
+.sum-val{font-family:'IBM Plex Mono',monospace;font-size:36px;font-weight:700;letter-spacing:-2px;color:var(--gold)}
+.sum-label{font-size:12px;color:var(--td);margin-top:4px}
+
+/* FOOTER */
+.footer{text-align:center;padding-top:40px;border-top:1px solid var(--brd);font-size:12px;color:var(--tm);margin-top:20px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{opacity:0;animation:fadeUp .65s ease forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .wrap{padding:28px 16px 60px}
+  .ch{grid-template-columns:1fr;gap:14px}
+  .ch-num{width:44px;height:44px;font-size:22px}
+  .ch-meta{flex-direction:row;align-items:center;min-width:auto}
+  .matrix{grid-template-columns:1fr;grid-template-rows:auto}
+  .audience-grid{grid-template-columns:1fr}
+  .summary{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══ HERO ═══ -->
+<header class="hero anim">
+  <div class="hero-badge">маркетинговая стратегия 2026</div>
+  <h1>Каналы привлечения<br>партнёров <em>DimMarEx</em></h1>
+  <p class="hero-sub">Стратегия поиска франчайзи среди профильных участников крипто-индустрии: P2P-менялы, майнеры, владельцы сообществ, OTC-десков и другие целевые сегменты.</p>
+</header>
+
+<!-- ═══ TARGET AUDIENCE ═══ -->
+<div class="sec">
+  <div class="sec-title anim d1">Целевая аудитория</div>
+  <div class="audience-grid">
+    <div class="aud-card anim d1">
+      <div class="aud-icon">🔄</div>
+      <div class="aud-title">P2P-менялы и арбитражники</div>
+      <div class="aud-desc">Действующие участники P2P-рынка на Binance, Bybit, Garantex, TG Wallet. Понимают крипту, имеют оборотный капитал, ищут масштабирование.</div>
+      <div class="aud-why">💡 Уже в бизнесе, нужен только бренд и инфраструктура</div>
+    </div>
+    <div class="aud-card anim d2">
+      <div class="aud-icon">⛏️</div>
+      <div class="aud-title">Майнеры и владельцы пулов</div>
+      <div class="aud-desc">Имеют крипто-активы, техническую экспертизу, опыт работы с большими объёмами. Ищут диверсификацию доходов.</div>
+      <div class="aud-why">💡 Есть капитал и понимание рынка, нужен cash-out канал</div>
+    </div>
+    <div class="aud-card anim d3">
+      <div class="aud-icon">👥</div>
+      <div class="aud-title">Лидеры крипто-сообществ</div>
+      <div class="aud-desc">Основатели Telegram-каналов, крипто-чатов, образовательных проектов. Аудитория 5K–500K, высокий авторитет.</div>
+      <div class="aud-why">💡 Имеют аудиторию и влияние, обменник — доп. монетизация</div>
+    </div>
+    <div class="aud-card anim d4">
+      <div class="aud-icon">💼</div>
+      <div class="aud-title">OTC-дески и крипто-брокеры</div>
+      <div class="aud-desc">Компании и частные брокеры, обслуживающие крупные сделки (50K+ USD). Готовая клиентская база, нужна лицензионная обёртка.</div>
+      <div class="aud-why">💡 Работающий бизнес, ищут легализацию и бренд</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHANNELS ═══ -->
+<div class="sec">
+  <div class="sec-title anim d2">Каналы привлечения · 14 направлений</div>
+  <div class="channels">
+
+    <!-- 1 -->
+    <div class="ch anim d2">
+      <div class="ch-num">01</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-brainstorm">из мозгоштурма</span>
+        <div class="ch-name">Прямой выход на P2P-менял</div>
+        <div class="ch-text">
+          Парсинг профилей активных мерчантов на P2P-площадках (Binance P2P, Bybit P2P, Garantex, TG Wallet). Сбор контактов из объявлений, выход через Telegram с персонализированным оффером. Фокус на менял с оборотом <span class="hl">от 500K ₽/мес</span> — они уже понимают бизнес и ищут масштабирование.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-hot">горячие лиды</span>
+          <span class="tag tag-auto">автоматизация</span>
+          <span class="tag tag-free">бесплатно</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="ch anim d2">
+      <div class="ch-num">02</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-brainstorm">из мозгоштурма</span>
+        <div class="ch-name">Парсинг контактов с крипто-сайтов и франшиз</div>
+        <div class="ch-text">
+          Скрипт для автоматического сбора email, Telegram, телефонов с сайтов конкурирующих франшиз обменников, крипто-компаний, обменных сервисов. Базы <span class="hl">BestChange</span>, каталоги на TopFranchise, Businessmens.ru. Выгрузка в CRM → холодный outreach.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-auto">автоматизация</span>
+          <span class="tag tag-free">бесплатно</span>
+          <span class="tag tag-hot">конкуренты</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: низкие</div>
+        <div class="ch-impact" style="background:var(--green-d);color:var(--green)">Импакт: средний</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="ch anim d2">
+      <div class="ch-num">03</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-brainstorm">из мозгоштурма</span>
+        <div class="ch-name">Выход на майнеров и основателей пулов</div>
+        <div class="ch-text">
+          Майнинг-пулы, хостинг-провайдеры, дата-центры. Контакты через профильные конференции (Mining Disrupt, Blockchain Life), Telegram-чаты майнеров, форумы. Для них обменник — <span class="hl">вертикальная интеграция</span>: добывают крипту → сами обменивают → увеличивают маржу.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-manual">ручная работа</span>
+          <span class="tag tag-hot">горячие лиды</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--orange-d);color:var(--orange)">Усилия: высокие</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="ch anim d3">
+      <div class="ch-num">04</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-brainstorm">из мозгоштурма</span>
+        <div class="ch-name">Основатели крипто-сообществ</div>
+        <div class="ch-text">
+          Владельцы крупных Telegram-каналов и чатов по крипте (5K+ подписчиков). Предложить им <span class="hl">обменник как доп. монетизацию аудитории</span>. Их подписчики — готовые клиенты обменника. Двойная выгода: доход от франшизы + повышение лояльности аудитории.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-partner">партнёрство</span>
+          <span class="tag tag-hot">горячие лиды</span>
+          <span class="tag tag-free">бесплатно</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 5 — NEW -->
+    <div class="ch anim d3">
+      <div class="ch-num">05</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">OTC-дески и нелицензированные обменники</div>
+        <div class="ch-text">
+          «Серые» обменники без бренда, работающие через Telegram-боты или сарафанное радио. Для них DimMarEx — возможность <span class="hl">получить бренд, софт, юр. обёртку и поток клиентов</span>. Искать через BestChange (обменники с низким рейтингом), Telegram-каталоги, локальные крипто-чаты городов.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-hot">горячие лиды</span>
+          <span class="tag tag-manual">ручная работа</span>
+          <span class="tag tag-new">высокий потенциал</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: очень высокий</div>
+      </div>
+    </div>
+
+    <!-- 6 — NEW -->
+    <div class="ch anim d3">
+      <div class="ch-num">06</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Крипто-конференции и митапы</div>
+        <div class="ch-text">
+          Участие в <span class="hl">Blockchain Life, Crypto Summit, Mining World, REES46</span> и региональных крипто-митапах. Стенд / спонсорство / нетворкинг. Прямой контакт с целевой аудиторией: предприниматели с капиталом, ищущие вход в крипто-бизнес. Закрытие сделок на месте.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-hot">горячие лиды</span>
+          <span class="tag tag-partner">нетворкинг</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--orange-d);color:var(--orange)">Усилия: высокие</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: очень высокий</div>
+      </div>
+    </div>
+
+    <!-- 7 — NEW -->
+    <div class="ch anim d3">
+      <div class="ch-num">07</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Реклама на крипто-медиа</div>
+        <div class="ch-text">
+          Размещение на <span class="hl">Bits.media, ForkLog, CoinPost, CryptoNews</span> — баннеры, нативные статьи, спецпроекты. Целевая аудитория этих площадок — люди, уже погружённые в крипту и потенциально заинтересованные в собственном бизнесе. Высокая стоимость, но точное попадание.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-auto">масштабируемый</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: низкие</div>
+        <div class="ch-impact" style="background:var(--green-d);color:var(--green)">Импакт: средний</div>
+      </div>
+    </div>
+
+    <!-- 8 — NEW -->
+    <div class="ch anim d4">
+      <div class="ch-num">08</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Telegram Ads → крипто-каналы</div>
+        <div class="ch-text">
+          Таргетированная реклама через Telegram Ads на подписчиков <span class="hl">крипто-каналов, P2P-чатов, бизнес-каналов</span>. Вести на лендинг «Свой обменник криптовалют за 30 дней». Можно сегментировать по тематикам: P2P, майнинг, инвестиции, арбитраж.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-auto">масштабируемый</span>
+          <span class="tag tag-new">проверенный канал</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: низкие</div>
+        <div class="ch-impact" style="background:var(--green-d);color:var(--green)">Импакт: средний</div>
+      </div>
+    </div>
+
+    <!-- 9 — NEW -->
+    <div class="ch anim d4">
+      <div class="ch-num">09</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">YouTube / крипто-блогеры — интеграции</div>
+        <div class="ch-text">
+          Инфлюенсер-маркетинг: интеграции у крипто-блогеров (10K–500K подписчиков). Формат: <span class="hl">«Как открыть свой обменник»</span> — обзор, кейс, интервью с действующим франчайзи. Один хороший ролик может генерировать заявки месяцами.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-partner">инфлюенсеры</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 10 — NEW -->
+    <div class="ch anim d4">
+      <div class="ch-num">10</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Реферальная программа через действующих франчайзи</div>
+        <div class="ch-text">
+          Каждый действующий партнёр получает <span class="hl">бонус / скидку на роялти за привлечённого нового франчайзи</span>. Самый дешёвый канал — рекомендация от того, кто уже в бизнесе. Создать систему трекинга рефералов и структуру вознаграждений.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-free">бесплатно</span>
+          <span class="tag tag-partner">партнёрство</span>
+          <span class="tag tag-hot">горячие лиды</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: низкие</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 11 — NEW -->
+    <div class="ch anim d4">
+      <div class="ch-num">11</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">LinkedIn + HeadHunter таргетинг</div>
+        <div class="ch-text">
+          Таргетинг на профили с опытом в финтехе, крипте, Forex, инвестициях. LinkedIn Ads + прямой outreach. На HH — поиск среди тех, кто ищет <span class="hl">«управляющий партнёр», «финансовый консультант», «бизнес-партнёр»</span>. Люди с капиталом и амбициями.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-auto">масштабируемый</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--green-d);color:var(--green)">Импакт: средний</div>
+      </div>
+    </div>
+
+    <!-- 12 — NEW -->
+    <div class="ch anim d5">
+      <div class="ch-num">12</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Форумы и сообщества: BitcoinTalk, vc.ru, Reddit</div>
+        <div class="ch-text">
+          Экспертный контент на <span class="hl">BitcoinTalk, vc.ru/crypto, Reddit r/CryptoMarkets</span>. Кейсы, разборы юнит-экономики обменника, истории успеха. Не реклама, а <span class="hl">позиционирование как эксперта</span> → входящие заявки от читателей. Особенно vc.ru — высокий авторитет в бизнес-среде.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-free">бесплатно</span>
+          <span class="tag tag-manual">контент</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--orange-d);color:var(--orange)">Усилия: высокие</div>
+        <div class="ch-impact" style="background:var(--green-d);color:var(--green)">Импакт: средний</div>
+      </div>
+    </div>
+
+    <!-- 13 — NEW -->
+    <div class="ch anim d5">
+      <div class="ch-num">13</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Смежные бизнесы: Forex-брокеры, инвест-клубы, МФО</div>
+        <div class="ch-text">
+          Владельцы бизнесов в финансовой сфере: <span class="hl">Forex-брокеры, инвестиционные клубы, микрофинансы, финансовые консультанты</span>. Для них обменник — естественная диверсификация. Уже есть клиентская база, понимание финансов, офис. Выход через профильные чаты и конференции.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-manual">ручная работа</span>
+          <span class="tag tag-hot">горячие лиды</span>
+          <span class="tag tag-new">неочевидный канал</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+    <!-- 14 — NEW -->
+    <div class="ch anim d5">
+      <div class="ch-num">14</div>
+      <div class="ch-body">
+        <span class="origin-badge origin-new">новое</span>
+        <div class="ch-name">Вебинары и онлайн-эвенты</div>
+        <div class="ch-text">
+          Проведение собственных вебинаров: <span class="hl">«Как открыть обменник криптовалют в 2026 году»</span>, «Юнит-экономика крипто-обменника», «Кейс: 1 млн за 3 месяца». Продвижение через TG Ads + крипто-каналы. Формат: бесплатный контент → прогрев → оффер франшизы.
+        </div>
+        <div class="ch-tags">
+          <span class="tag tag-paid">платный</span>
+          <span class="tag tag-auto">масштабируемый</span>
+          <span class="tag tag-new">воронка прогрева</span>
+        </div>
+      </div>
+      <div class="ch-meta">
+        <div class="ch-effort" style="background:var(--green-d);color:var(--green)">Усилия: средние</div>
+        <div class="ch-impact" style="background:var(--gold-d);color:var(--gold)">Импакт: высокий</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ PRIORITY MATRIX ═══ -->
+<div class="sec">
+  <div class="sec-title anim d4">Матрица приоритетов</div>
+  <div class="matrix-wrap anim d5">
+    <div class="matrix">
+      <div class="matrix-cell">
+        <div class="matrix-label">⚡ Quick Wins · Легко + Высокий импакт</div>
+        <div class="matrix-items">
+          <div class="matrix-item">01 · Прямой выход на P2P-менял</div>
+          <div class="matrix-item">04 · Основатели крипто-сообществ</div>
+          <div class="matrix-item">10 · Реферальная программа</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">🎯 Стратегические · Сложно + Высокий импакт</div>
+        <div class="matrix-items">
+          <div class="matrix-item">05 · OTC-дески и серые обменники</div>
+          <div class="matrix-item">06 · Крипто-конференции</div>
+          <div class="matrix-item">03 · Майнеры и пулы</div>
+          <div class="matrix-item">13 · Смежные бизнесы</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">🔧 Рутина · Легко + Средний импакт</div>
+        <div class="matrix-items">
+          <div class="matrix-item">02 · Парсинг контактов</div>
+          <div class="matrix-item">08 · Telegram Ads</div>
+          <div class="matrix-item">07 · Крипто-медиа</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-label">📋 На потом · Сложно + Средний импакт</div>
+        <div class="matrix-items">
+          <div class="matrix-item">09 · YouTube-блогеры</div>
+          <div class="matrix-item">12 · Форумы и контент</div>
+          <div class="matrix-item">11 · LinkedIn / HH</div>
+          <div class="matrix-item">14 · Вебинары</div>
+        </div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span>← Лёгкие усилия · · · Высокие усилия →</span>
+      <span>↑ Высокий импакт · ↓ Средний импакт</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IDEAL FUNNEL ═══ -->
+<div class="sec">
+  <div class="sec-title anim d5">Воронка привлечения партнёра</div>
+  <div class="matrix-wrap anim d5">
+    <div class="funnel-visual">
+      <div class="funnel-step fs1">🎯 Касание · Парсинг / реклама / конференция / контент</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step fs2">💬 Первый контакт · Персональное сообщение / звонок / DM</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step fs3">📊 Презентация · Зум / встреча / вебинар с кейсами</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step fs4">🤝 Переговоры · Условия, территория, финмодель</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step fs5">🔑 Подписание договора франшизы</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SUMMARY ═══ -->
+<div class="sec">
+  <div class="sec-title anim d5">Сводка</div>
+  <div class="summary anim d6">
+    <div class="sum-item">
+      <div class="sum-val">14</div>
+      <div class="sum-label">каналов привлечения</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-val">4</div>
+      <div class="sum-label">из мозгоштурма</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-val">+10</div>
+      <div class="sum-label">новых направлений</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-val">4</div>
+      <div class="sum-label">целевых сегмента</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-val">3</div>
+      <div class="sum-label">quick wins</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer anim d6">DimMarEx · Маркетинговая стратегия привлечения партнёров · 2026</div>
+
+</div>
+</body>
+</html>
