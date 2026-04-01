@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIMMAREX — Инвестиционная презентация 2026–2028</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #6AE4FB;
+  --purple: #8F77F0;
+  --dark: #060608;
+  --dark2: #0D0B12;
+  --dark3: #13101A;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: #E2DEFF;
+  --muted: rgba(226,222,255,0.45);
+  --grad: linear-gradient(135deg, var(--cyan), var(--purple));
+  --grad-text: linear-gradient(90deg, var(--cyan), var(--purple));
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  background: var(--dark);
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  color: var(--text);
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, background 0.2s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(106,228,251,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s cubic-bezier(.23,1,.32,1), width 0.25s, height 0.25s, opacity 0.25s;
+}
+
+/* Slide nav dots */
+.nav-dots {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nav-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-dot.active {
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  transform: scale(1.4);
+}
+
+/* Section base */
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px;
+  overflow: hidden;
+}
+
+/* Noise overlay */
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+section > * { position: relative; z-index: 1; }
+
+/* Slide number */
+.slide-num {
+  position: absolute;
+  top: 36px; left: 100px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Gradient text */
+.grad-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Diamond logo */
+.diamond {
+  display: inline-block;
+  position: relative;
+}
+.diamond svg { display: block; }
+
+/* ===================== SLIDE 1: COVER ===================== */
+#s1 {
+  background: var(--dark);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(143,119,240,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 30% 20%, rgba(106,228,251,0.08) 0%, transparent 60%),
+    var(--dark);
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+
+.cover-diamond-bg {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55vw;
+  height: 55vw;
+  opacity: 0.06;
+  animation: spin-slow 40s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.cover-content { max-width: 680px; }
+
+.cover-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding: 6px 14px;
+  border: 1px solid rgba(106,228,251,0.25);
+  border-radius: 2px;
+  animation: fade-up 0.8s 0.2s both;
+}
+
+.cover-tag::before {
+  content: '';
+  display: block;
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.cover-headline {
+  font-size: clamp(64px, 8vw, 110px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  animation: fade-up 0.8s 0.4s both;
+}
+
+.cover-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2vw, 26px);
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 56px;
+  animation: fade-up 0.8s 0.6s both;
+}
+
+.cover-metrics {
+  display: flex;
+  gap: 0;
+  animation: fade-up 0.8s 0.8s both;
+}
+
+.cover-metric {
+  padding: 20px 36px;
+  border: 1px solid var(--border);
+  border-right: none;
+  background: var(--card);
+  backdrop-filter: blur(12px);
+}
+.cover-metric:first-child { border-radius: 4px 0 0 4px; }
+.cover-metric:last-child { border-right: 1px solid var(--border); border-radius: 0 4px 4px 0; }
+
+.metric-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 4px;
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== SLIDE 2: PROBLEM ===================== */
+#s2 { background: var(--dark2); }
+
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-eyebrow::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 48px;
+  background: var(--cyan);
+  opacity: 0.5;
+}
+
+.section-title {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 64px;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.problem-card {
+  background: var(--dark2);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.problem-card:hover { background: var(--dark3); }
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.problem-card:hover::before { transform: scaleX(1); }
+
+.problem-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(106,228,251,0.08);
+  line-height: 1;
+  margin-bottom: -16px;
+  display: block;
+}
+
+.problem-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.problem-stat {
+  font-family: 'DM Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.problem-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ===================== SLIDE 3: SOLUTION ===================== */
+#s3 {
+  background: var(--dark);
+  background-image: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(106,228,251,0.04) 0%, transparent 70%);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  flex: 1;
+}
+
+.product-card {
+  background: var(--dark);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.product-card:hover { background: rgba(106,228,251,0.04); }
+
+.product-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.product-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.product-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.product-tag {
+  position: absolute;
+  top: 24px; right: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--purple);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border: 1px solid rgba(143,119,240,0.3);
+  border-radius: 2px;
+}
+
+.solution-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.positioning-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  padding: 10px 20px;
+  border: 1px solid rgba(106,228,251,0.3);
+  color: var(--cyan);
+  border-radius: 2px;
+  background: rgba(106,228,251,0.05);
+}
+
+/* ===================== SLIDE 4: TRACTION ===================== */
+#s4 {
+  background: var(--dark2);
+  background-image: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(143,119,240,0.07) 0%, transparent 65%);
+}
+
+.traction-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.traction-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.traction-metric {
+  background: var(--dark2);
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.traction-metric::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--grad);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.traction-metric:hover::after { opacity: 1; }
+
+.tm-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tm-label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.traction-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.proof-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s;
+}
+.proof-item:hover { border-color: rgba(106,228,251,0.3); }
+
+.proof-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  margin-top: 4px;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.proof-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.proof-text strong { color: var(--cyan); }
+
+/* ===================== SLIDE 5: MARKET ===================== */
+#s5 { background: var(--dark); }
+
+.market-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.market-circles {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-wrap {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.c-tam {
+  width: 300px; height: 300px;
+  border: 1px solid rgba(106,228,251,0.15);
+  background: rgba(106,228,251,0.03);
+}
+.c-sam {
+  width: 210px; height: 210px;
+  border: 1px solid rgba(143,119,240,0.25);
+  background: rgba(143,119,240,0.05);
+}
+.c-som {
+  width: 120px; height: 120px;
+  border: 1px solid rgba(106,228,251,0.4);
+  background: rgba(106,228,251,0.08);
+}
+
+.circle-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.circle-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+.market-info { display: flex; flex-direction: column; gap: 28px; }
+
+.market-stat {
+  padding-left: 20px;
+  border-left: 2px solid;
+}
+.market-stat.s1 { border-color: rgba(106,228,251,0.5); }
+.market-stat.s2 { border-color: rgba(143,119,240,0.5); }
+.market-stat.s3 { border-color: rgba(106,228,251,0.3); }
+
+.ms-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ms-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.ms-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.drivers {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 4px;
+}
+.drivers-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.driver { font-size: 13px; color: var(--muted); padding: 5px 0; display: flex; gap: 10px; }
+.driver::before { content: '→'; color: var(--cyan); flex-shrink: 0; }
+
+/* ===================== SLIDE 6: BUSINESS MODEL ===================== */
+#s6 { background: var(--dark2); }
+
+.model-streams {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+
+.stream-card {
+  background: var(--dark2);
+  padding: 36px 28px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.stream-card:hover { background: var(--dark3); }
+
+.stream-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.stream-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.stream-type {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.stream-type.stable { background: rgba(106,228,251,0.1); color: var(--cyan); }
+.stream-type.recurring { background: rgba(143,119,240,0.1); color: var(--purple); }
+.stream-type.highmargin { background: rgba(106,228,251,0.08); color: rgba(106,228,251,0.8); }
+.stream-type.scalable { background: rgba(143,119,240,0.08); color: rgba(143,119,240,0.8); }
+
+.stream-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+.model-goal {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 32px;
+  border: 1px solid rgba(143,119,240,0.25);
+  background: rgba(143,119,240,0.05);
+  border-radius: 4px;
+}
+.goal-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--purple);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.goal-text {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 600;
+}
+.goal-arrow {
+  font-size: 24px;
+  color: var(--purple);
+  flex-shrink: 0;
+}
+
+/* ===================== SLIDE 7: STRATEGY ===================== */
+#s7 {
+  background: var(--dark);
+  background-image: radial-gradient(ellipse 70% 60% at 20% 50%, rgba(106,228,251,0.04) 0%, transparent 65%);
+}
+
+.strategy-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.ratio-visual {
+  position: relative;
+}
+
+.ratio-bar {
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 16px;
+}
+.ratio-80 {
+  width: 80%;
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--dark);
+  font-weight: 700;
+}
+.ratio-20 {
+  width: 20%;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.ratio-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.rl-item { text-align: center; }
+.rl-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.rl-desc { font-size: 12px; color: var(--muted); }
+
+.steps { display: flex; flex-direction: column; gap: 0; }
+
+.step {
+  display: flex;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.step-content {}
+.step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.step-metric {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--cyan);
+  margin-top: 8px;
+  padding: 4px 10px;
+  border: 1px solid rgba(106,228,251,0.2);
+  border-radius: 2px;
+}
+
+/* ===================== SLIDE 8: ROADMAP ===================== */
+#s8 { background: var(--dark2); }
+
+.roadmap-track {
+  position: relative;
+  margin-top: 24px;
+}
+
+.roadmap-line {
+  position: absolute;
+  top: 36px;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple), rgba(106,228,251,0.2));
+}
+
+.roadmap-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+}
+
+.phase {
+  padding-top: 72px;
+  position: relative;
+}
+
+.phase-dot {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  background: var(--dark2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.phase-dot::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+.phase:nth-child(2) .phase-dot { border-color: var(--purple); }
+.phase:nth-child(2) .phase-dot::after { background: var(--purple); }
+.phase:nth-child(3) .phase-dot {
+  background: var(--grad);
+  border-color: transparent;
+}
+.phase:nth-child(3) .phase-dot::after { background: white; }
+
+.phase-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.phase-name {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.phase:nth-child(1) .phase-name { color: var(--cyan); }
+.phase:nth-child(2) .phase-name { color: var(--purple); }
+.phase:nth-child(3) .phase-name { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.phase-kpis { display: flex; flex-direction: column; gap: 10px; }
+
+.kpi {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 14px;
+}
+.kpi-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.kpi-desc { color: var(--muted); font-size: 13px; }
+
+.phase-card {
+  padding: 28px 28px 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.phase:nth-child(3) .phase-card {
+  border-color: rgba(106,228,251,0.2);
+  background: rgba(106,228,251,0.04);
+}
+
+/* ===================== SLIDE 9: FINANCIALS ===================== */
+#s9 {
+  background: var(--dark);
+  background-image: radial-gradient(ellipse 60% 60% at 60% 50%, rgba(143,119,240,0.07) 0%, transparent 65%);
+}
+
+.scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 32px;
+}
+
+.scenario {
+  background: var(--dark);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario.base {
+  background: rgba(106,228,251,0.04);
+  border-left: 2px solid var(--cyan);
+  border-right: none;
+}
+
+.scenario-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.scenario.base .scenario-label { color: var(--cyan); }
+
+.scenario-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; height: 16px;
+  background: var(--cyan);
+  border-radius: 2px;
+  font-size: 10px;
+  color: var(--dark);
+}
+
+.scenario-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.scenario-val.cons { color: rgba(226,222,255,0.6); }
+.scenario-val.base-v { color: var(--cyan); }
+.scenario-val.opt { color: var(--purple); }
+
+.scenario-return {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.scenario.base .scenario-return { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.scenario-revenue {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.investor-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(106,228,251,0.2);
+  background: rgba(106,228,251,0.04);
+  border-radius: 4px;
+}
+
+.inv-item {
+  padding: 24px 28px;
+  border-right: 1px solid rgba(106,228,251,0.1);
+}
+.inv-item:last-child { border-right: none; }
+
+.inv-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.inv-val {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cyan);
+}
+.inv-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ===================== SLIDE 10: TEAM ===================== */
+#s10 { background: var(--dark2); }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.team-card {
+  background: var(--dark2);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.team-card:hover { background: var(--dark3); }
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad);
+}
+
+.team-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 24px;
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+}
+
+.team-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.team-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.team-bio {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.team-bio strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ===================== SLIDE 11: COMPETITION ===================== */
+#s11 { background: var(--dark); }
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.comp-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+
+.comp-table th:first-child { width: 28%; }
+
+.comp-table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
+}
+
+.comp-table tr.dimmarex-row td {
+  color: var(--text);
+  background: rgba(106,228,251,0.04);
+}
+
+.comp-table tr.dimmarex-row td:first-child {
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.feature-name {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.check { color: var(--cyan); font-size: 16px; }
+.comp-table tr.dimmarex-row .check,
+.comp-table td.dimmarex-row .check { color: #4ade80; font-weight: 700; text-shadow: 0 0 8px rgba(74,222,128,0.5); }
+.check-part { color: var(--muted); font-size: 13px; }
+.cross { color: rgba(255,255,255,0.2); font-size: 16px; }
+.in-progress {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border: 1px solid rgba(143,119,240,0.3);
+  color: var(--purple);
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.comp-insight {
+  margin-top: 28px;
+  padding: 20px 28px;
+  border-left: 3px solid var(--cyan);
+  background: rgba(106,228,251,0.04);
+}
+.comp-insight p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.65;
+}
+.comp-insight strong { color: var(--cyan); }
+
+/* ===================== 3D COIN CAROUSEL ===================== */
+.cover-coins {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-slide {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85) translateY(30px);
+  transition: opacity 0.8s cubic-bezier(.23,1,.32,1), transform 0.8s cubic-bezier(.23,1,.32,1);
+  pointer-events: none;
+}
+.coin-slide.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+.coin-slide.prev {
+  opacity: 0;
+  transform: scale(0.85) translateY(-30px);
+}
+
+.coin-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(106,228,251,0.2));
+  animation: coin-float 5s ease-in-out infinite;
+}
+.coin-slide:nth-child(2) img { animation-delay: -1.5s; }
+.coin-slide:nth-child(3) img { animation-delay: -3s; }
+
+@keyframes coin-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+
+.coin-glow {
+  position: absolute;
+  width: 250px; height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(106,228,251,0.08) 0%, transparent 70%);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.coin-dots {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.coin-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s, transform 0.3s;
+}
+.coin-dot.active { background: var(--cyan); transform: scale(1.4); }
+
+/* ===================== NEGATIVE SCENARIO SLIDE ===================== */
+#s-neg {
+  background: var(--dark2);
+  background-image: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(143,119,240,0.06) 0%, transparent 65%);
+}
+
+.neg-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.neg-shield {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+  border: 1px solid rgba(143,119,240,0.25);
+  background: rgba(143,119,240,0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.shield-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px rgba(143,119,240,0.4));
+}
+
+.shield-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.shield-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.guarantee-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 28px;
+  background: var(--grad);
+  border-radius: 4px;
+  color: var(--dark);
+}
+.guarantee-badge .g-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+.guarantee-badge .g-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.neg-terms { display: flex; flex-direction: column; gap: 20px; }
+
+.neg-term {
+  padding: 24px 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.neg-term:hover { border-color: rgba(143,119,240,0.3); }
+
+.neg-term::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--grad);
+}
+
+.neg-term-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  padding-left: 14px;
+}
+
+.neg-term-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  padding-left: 14px;
+}
+.neg-term-desc strong { color: var(--text); }
+
+/* ===================== TEAM PHOTOS ===================== */
+.team-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+  background: var(--grad) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  filter: grayscale(15%);
+}
+
+/* ===================== SLIDE 12: LEGAL ===================== */
+#s12 { background: var(--dark2); }
+
+.legal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.legal-block {
+  padding: 32px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 4px;
+}
+
+.legal-block-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.legal-block-title::before {
+  content: '';
+  display: block;
+  width: 16px; height: 1px;
+  background: var(--cyan);
+}
+
+.legal-entity {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.legal-sub {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.options { display: flex; flex-direction: column; gap: 16px; }
+
+.option {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+.option:hover { border-color: rgba(106,228,251,0.3); }
+
+.option-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.option-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ob-equity { background: rgba(106,228,251,0.1); color: var(--cyan); }
+.ob-loan { background: rgba(143,119,240,0.1); color: var(--purple); }
+
+.option-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+.timeline-items { display: flex; flex-direction: column; gap: 0; }
+
+.tl-item {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.tl-item:last-child { border-bottom: none; }
+
+.tl-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--purple);
+  white-space: nowrap;
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 80px;
+}
+.tl-text { font-size: 14px; color: var(--muted); line-height: 1.5; }
+.tl-text strong { color: var(--text); }
+
+/* ===================== SLIDE 13: OFFER ===================== */
+#s13 {
+  background: var(--dark);
+  background-image: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(106,228,251,0.04) 0%, transparent 70%);
+}
+
+.offer-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.offer-params { display: flex; flex-direction: column; gap: 0; }
+
+.param-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.param-row:first-child { border-top: 1px solid var(--border); }
+
+.param-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.param-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+}
+.param-val.highlight { color: var(--cyan); }
+
+.use-of-funds { display: flex; flex-direction: column; gap: 14px; }
+.uof-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.fund-bar-row { display: flex; flex-direction: column; gap: 6px; }
+.fund-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.fund-name { color: var(--text); }
+.fund-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+.fund-track {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fund-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--grad);
+}
+
+.cap-table {
+  margin-top: 28px;
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 4px;
+}
+.ct-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ct-items { display: flex; gap: 0; }
+.ct-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 12px;
+  border-right: 1px solid var(--border);
+}
+.ct-item:last-child { border-right: none; }
+.ct-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+  margin-bottom: 4px;
+}
+.ct-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* ===================== SLIDE 14: INVESTOR RIGHTS ===================== */
+#s14 { background: var(--dark2); }
+
+.rights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.rights-block {
+  background: var(--dark2);
+  padding: 36px 32px;
+  transition: background 0.3s;
+}
+.rights-block:hover { background: var(--dark3); }
+
+.rights-block-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--purple);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rb-icon {
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  background: rgba(143,119,240,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.rights-list { display: flex; flex-direction: column; gap: 12px; }
+
+.right-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.right-bullet {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--purple);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.right-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+.right-text strong { color: var(--text); font-weight: 600; }
+
+/* ===================== SLIDE 15: CTA ===================== */
+#s15 {
+  background: var(--dark);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(106,228,251,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(143,119,240,0.08) 0%, transparent 50%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cta-diamond {
+  margin: 0 auto 40px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.cta-headline {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 56px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-urgency {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.urgency-item { text-align: center; }
+.urgency-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--cyan);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.urgency-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.cta-divider {
+  width: 1px;
+  background: var(--border);
+  height: 60px;
+  align-self: center;
+}
+
+.cta-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 40px;
+  background: var(--grad);
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-bottom: 24px;
+  cursor: none;
+}
+.cta-contact:hover { opacity: 0.9; transform: scale(1.02); }
+
+.cta-contact-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cta-materials {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.material-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+/* Animations on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section headers shared */
+.section-header { margin-bottom: 40px; }
+
+/* Responsive basic */
+@media (max-width: 900px) {
+  section { padding: 60px 40px; }
+  .nav-dots { display: none; }
+  .slide-num { left: 40px; }
+  .problems-grid, .products-grid, .model-streams,
+  .team-grid, .scenarios, .rights-grid { grid-template-columns: 1fr; }
+  .traction-layout, .market-layout, .strategy-layout,
+  .offer-layout, .legal-layout { grid-template-columns: 1fr; gap: 40px; }
+  .roadmap-phases { grid-template-columns: 1fr; }
+  .roadmap-line { display: none; }
+  .cover-metrics { flex-wrap: wrap; }
+  .cover-metric { flex: 1; min-width: 140px; }
+  .ct-items { flex-wrap: wrap; }
+  .cta-urgency { flex-wrap: wrap; gap: 24px; }
+  .cta-divider { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav dots -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ==================== SLIDE 1: COVER ==================== -->
+<section id="s1">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+
+  <!-- Big background diamond -->
+  <div class="cover-diamond-bg">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <defs>
+        <linearGradient id="dg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6AE4FB"/>
+          <stop offset="100%" stop-color="#8F77F0"/>
+        </linearGradient>
+      </defs>
+      <path d="M100 5L195 100L100 195L5 100Z" stroke="url(#dg1)" stroke-width="1" fill="none"/>
+      <path d="M100 25L175 100L100 175L25 100Z" stroke="url(#dg1)" stroke-width="0.5" fill="none" opacity="0.5"/>
+      <path d="M100 45L155 100L100 155L45 100Z" stroke="url(#dg1)" stroke-width="0.3" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- 3D Crypto coins carousel -->
+  <div class="cover-coins">
+    <div class="coin-glow"></div>
+    <div class="coin-slide active">
+      <img src="img/tether-usdt-glass-crypto-coin-3d-illustration-free-png.webp" alt="USDT">
+    </div>
+    <div class="coin-slide">
+      <img src="img/usd-dollar-3d-icon-png-download-5628242.webp" alt="USD">
+    </div>
+    <div class="coin-slide">
+      <img src="img/bitcoin-exchange-3d-icon-png-download-4466119.webp" alt="BTC Exchange">
+    </div>
+    <div class="coin-dots" id="coinDots">
+      <div class="coin-dot active"></div>
+      <div class="coin-dot"></div>
+      <div class="coin-dot"></div>
+    </div>
+  </div>
+
+  <div class="cover-content" style="max-width:560px">
+    <div class="cover-tag">Инвестиционная презентация · 2026–2028</div>
+
+    <h1 class="cover-headline">
+      <span class="grad-text">DIM</span>MAREX
+    </h1>
+
+    <p class="cover-sub">CryptoBank Infrastructure — масштабируемая финансовая платформа нового поколения</p>
+
+    <div class="cover-metrics">
+      <div class="cover-metric">
+        <span class="metric-val">15 млн ₽</span>
+        <span class="metric-label">Объём раунда</span>
+      </div>
+      <div class="cover-metric">
+        <span class="metric-val">5%</span>
+        <span class="metric-label">Доля</span>
+      </div>
+      <div class="cover-metric">
+        <span class="metric-val">285 млн ₽</span>
+        <span class="metric-label">Pre-money</span>
+      </div>
+      <div class="cover-metric">
+        <span class="metric-val">×30</span>
+        <span class="metric-label">Потенциал</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 2: PROBLEM ==================== -->
+<section id="s2">
+  <span class="slide-num">01 / Проблема</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Проблема</div>
+    <h2 class="section-title">Финансовые рельсы сломаны.<br><span class="grad-text">Рынок ждёт консолидатора.</span></h2>
+  </div>
+
+  <div class="problems-grid">
+    <div class="problem-card reveal" style="transition-delay:0.1s">
+      <span class="problem-num">01</span>
+      <div class="problem-title">Трансграничные переводы</div>
+      <div class="problem-stat">5–10%</div>
+      <div class="problem-desc">Комиссии съедают бизнес. Задержки 3–5 дней. Санкционные ограничения отрезают компании от международных расчётов. Альтернатив почти нет.</div>
+    </div>
+    <div class="problem-card reveal" style="transition-delay:0.2s">
+      <span class="problem-num">02</span>
+      <div class="problem-title">Фрагментированный крипторынок</div>
+      <div class="problem-stat">100+ операторов</div>
+      <div class="problem-desc">Сотни мелких обменников без единой инфраструктуры, стандартов и защиты клиента. Рынок не консолидирован — нет лидера с технологией.</div>
+    </div>
+    <div class="problem-card reveal" style="transition-delay:0.3s">
+      <span class="problem-num">03</span>
+      <div class="problem-title">Регуляторный вакуум</div>
+      <div class="problem-stat">80% под угрозой</div>
+      <div class="problem-desc">Малые операторы не могут работать в легальном поле — теряют клиентов и закрываются. Регуляция не ждёт. Нужна готовая лицензированная инфраструктура.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: SOLUTION ==================== -->
+<section id="s3">
+  <span class="slide-num">02 / Решение</span>
+  <div class="solution-header reveal">
+    <div>
+      <div class="section-eyebrow">Решение</div>
+      <h2 class="section-title" style="margin-bottom:0">Шесть продуктов.<br><span class="grad-text">Одна инфраструктура.</span></h2>
+    </div>
+    <div class="positioning-badge">Не обменник — инфраструктурный слой</div>
+  </div>
+
+  <div class="products-grid" style="margin-top:24px">
+    <div class="product-card reveal" style="transition-delay:0.05s">
+      <span class="product-tag">Core</span>
+      <span class="product-icon">◈</span>
+      <div class="product-name">Мгновенный офлайн-обмен</div>
+      <div class="product-desc">Сеть физических точек для безопасных операций с цифровыми активами. Доверие и скорость для каждого пользователя.</div>
+    </div>
+    <div class="product-card reveal" style="transition-delay:0.1s">
+      <span class="product-tag">Global</span>
+      <span class="product-icon">⇄</span>
+      <div class="product-name">Международные переводы</div>
+      <div class="product-desc">Быстрые трансграничные платежи через крипто-инфраструктуру. Обход санкционных ограничений легально.</div>
+    </div>
+    <div class="product-card reveal" style="transition-delay:0.15s">
+      <span class="product-tag">Cards</span>
+      <span class="product-icon">▣</span>
+      <div class="product-name">Глобальные криптокарты</div>
+      <div class="product-desc">Эмиссия и обслуживание карт для повседневных трат по всему миру. Цель: 300K карт к 2028.</div>
+    </div>
+    <div class="product-card reveal" style="transition-delay:0.2s">
+      <span class="product-tag">B2B</span>
+      <span class="product-icon">◻</span>
+      <div class="product-name">White-label платформа</div>
+      <div class="product-desc">Готовая инфраструктура для партнёров без собственных CAPEX. Масштабирование 80% роста через сеть.</div>
+    </div>
+    <div class="product-card reveal" style="transition-delay:0.25s">
+      <span class="product-tag">Tech</span>
+      <span class="product-icon">⬡</span>
+      <div class="product-name">API-интеграции B2B</div>
+      <div class="product-desc">Комплексные решения для финтех-компаний и платёжных систем. Аналитические инструменты и глубокая интеграция.</div>
+    </div>
+    <div class="product-card reveal" style="transition-delay:0.3s">
+      <span class="product-tag">RU</span>
+      <span class="product-icon">⬔</span>
+      <div class="product-name">СБП / QR-платежи</div>
+      <div class="product-desc">Интеграция в российскую платёжную инфраструктуру. Бесшовное использование цифровых активов в повседневных расчётах.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: TRACTION ==================== -->
+<section id="s4">
+  <span class="slide-num">03 / Трекшн</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Трекшн</div>
+    <h2 class="section-title">Это не гипотеза.<br><span class="grad-text">Это работающий бизнес.</span></h2>
+  </div>
+
+  <div class="traction-layout">
+    <div class="traction-metrics">
+      <div class="traction-metric reveal" style="transition-delay:0.1s">
+        <div class="tm-val counter" data-target="7">0</div>
+        <div class="tm-label">Действующих офисов с валидированным спросом</div>
+      </div>
+      <div class="traction-metric reveal" style="transition-delay:0.15s">
+        <div class="tm-val">215 млн ₽</div>
+        <div class="tm-label">Совокупный объём обмена сети / месяц (Q1 2026)</div>
+      </div>
+      <div class="traction-metric reveal" style="transition-delay:0.2s">
+        <div class="tm-val">0.7%</div>
+        <div class="tm-label">Стабильный спред — предсказуемая маржинальность</div>
+      </div>
+      <div class="traction-metric reveal" style="transition-delay:0.25s">
+        <div class="tm-val">30–150 млн</div>
+        <div class="tm-label">Оборот ₽/мес на один офис</div>
+      </div>
+    </div>
+
+    <div class="traction-proof">
+      <div class="proof-item reveal" style="transition-delay:0.15s">
+        <div class="proof-dot"></div>
+        <div class="proof-text"><strong>White-label уже запущен</strong> — готовая платформа для партнёров, подключение без CAPEX</div>
+      </div>
+      <div class="proof-item reveal" style="transition-delay:0.2s">
+        <div class="proof-dot"></div>
+        <div class="proof-text"><strong>Лицензирование в процессе</strong> — юридический трек с опытными консультантами, финальная стадия согласования</div>
+      </div>
+      <div class="proof-item reveal" style="transition-delay:0.25s">
+        <div class="proof-dot"></div>
+        <div class="proof-text"><strong>Криптокарты в старте</strong> — новый высокомаржинальный источник дохода, цель 50K карт к концу 2026</div>
+      </div>
+      <div class="proof-item reveal" style="transition-delay:0.3s">
+        <div class="proof-dot"></div>
+        <div class="proof-text"><strong>Зарегистрированный товарный знак DIMMAREX</strong> — активное юридическое лицо ООО УК ДимМар</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: MARKET ==================== -->
+<section id="s5">
+  <span class="slide-num">04 / Рынок</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Рыночная возможность</div>
+    <h2 class="section-title">Рынок на переломе.<br><span class="grad-text">Окно открыто сейчас.</span></h2>
+  </div>
+
+  <div class="market-layout">
+    <div class="market-circles reveal">
+      <img src="img/market_circles.jpg" alt="TAM SAM SOM" style="width:340px; height:340px; object-fit:contain; border-radius:50%;">
+    </div>
+
+    <div class="market-info reveal" style="transition-delay:0.2s">
+      <div class="market-stat s1">
+        <div class="ms-title">TAM — Глобальный</div>
+        <div class="ms-val">$2.5 трлн оборота в 2025</div>
+        <div class="ms-desc">Глобальный рынок крипто-обмена и платежей. Растёт +35% в год на фоне институциональных инвестиций и регуляции.</div>
+      </div>
+      <div class="market-stat s2">
+        <div class="ms-title">SAM — РФ + СНГ + Дружественные страны</div>
+        <div class="ms-val">Фрагментированный, без лидера</div>
+        <div class="ms-desc">Сотни операторов без инфраструктуры. Регуляторное давление создаёт идеальный момент для консолидатора.</div>
+      </div>
+      <div class="market-stat s3">
+        <div class="ms-title">SOM — Доля DIMMAREX к 2028</div>
+        <div class="ms-val">300+ партнёров · $20–25M выручки</div>
+        <div class="ms-desc">Реалистичная целевая доля при реализации партнёрской стратегии 80/20.</div>
+      </div>
+      <div class="drivers">
+        <div class="drivers-title">Драйверы роста</div>
+        <div class="driver">Регулирование вынуждает малых игроков искать инфраструктурного партнёра</div>
+        <div class="driver">Рост крипто-платежей в повседневных расчётах +40% YoY</div>
+        <div class="driver">Спрос на трансграничные переводы в условиях санкций</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: BUSINESS MODEL ==================== -->
+<section id="s6">
+  <span class="slide-num">05 / Бизнес-модель</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Бизнес-модель</div>
+    <h2 class="section-title">Четыре потока.<br><span class="grad-text">Диверсифицированный доход.</span></h2>
+  </div>
+
+  <div class="model-streams">
+    <div class="stream-card reveal" style="transition-delay:0.1s">
+      <div class="stream-num">Поток 01</div>
+      <div class="stream-type stable">Базовый · Стабильный</div>
+      <div class="stream-name">Спред с операций</div>
+      <div class="stream-desc">0.7% с каждой транзакции. 7 офисов с оборотом 30–150 млн ₽/мес каждый. Предсказуемый фундамент выручки.</div>
+    </div>
+    <div class="stream-card reveal" style="transition-delay:0.15s">
+      <div class="stream-num">Поток 02</div>
+      <div class="stream-type recurring">Партнёрский · Повторяющийся</div>
+      <div class="stream-name">Подписка + % с оборота</div>
+      <div class="stream-desc">Ежемесячные платежи от White-label партнёров плюс процент с их оборота. Масштабируется с ростом сети без CAPEX.</div>
+    </div>
+    <div class="stream-card reveal" style="transition-delay:0.2s">
+      <div class="stream-num">Поток 03</div>
+      <div class="stream-type highmargin">Карты · Высокомаржинальный</div>
+      <div class="stream-name">Криптокарты и платежи</div>
+      <div class="stream-desc">Комиссии с криптокарт, СБП, QR-платежей. Высокая маржинальность — низкий операционный cost per transaction.</div>
+    </div>
+    <div class="stream-card reveal" style="transition-delay:0.25s">
+      <div class="stream-num">Поток 04</div>
+      <div class="stream-type scalable">B2B · Масштабируемый</div>
+      <div class="stream-name">API и B2B инфраструктура</div>
+      <div class="stream-desc">Плата за интеграцию от финтех-компаний и платёжных систем. Высокий NRR, низкий churn у B2B клиентов.</div>
+    </div>
+  </div>
+
+  <div class="model-goal reveal" style="transition-delay:0.3s; margin-top:32px">
+    <div class="goal-label">Стратегическая цель</div>
+    <div class="goal-arrow">→</div>
+    <div class="goal-text">К 2027 году доля повторяющегося дохода превышает <strong style="color:var(--cyan)">50% выручки</strong> — обеспечивает предсказуемость и инвестиционную привлекательность</div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: STRATEGY ==================== -->
+<section id="s7">
+  <span class="slide-num">06 / Стратегия</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Стратегия масштабирования</div>
+    <h2 class="section-title">Модель 80/20:<br><span class="grad-text">рост без тяжёлого CAPEX.</span></h2>
+  </div>
+
+  <div class="strategy-layout">
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="ratio-bar">
+        <div class="ratio-80">80%</div>
+        <div class="ratio-20">20%</div>
+      </div>
+      <div class="ratio-labels">
+        <div class="rl-item" style="text-align:left">
+          <div class="rl-name" style="color:var(--cyan)">Партнёрская сеть</div>
+          <div class="rl-desc">Низкий CAPEX · Быстрое покрытие</div>
+        </div>
+        <div class="rl-item" style="text-align:right">
+          <div class="rl-name">Свои офисы</div>
+          <div class="rl-desc">Стандарты · Качество</div>
+        </div>
+      </div>
+
+      <div style="padding:24px 28px; border:1px solid var(--border); background:var(--card); border-radius:4px">
+        <div style="font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:16px">Почему это работает</div>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7">Вместо дорогостоящего расширения собственной сети, DIMMAREX строит <strong style="color:var(--text)">инфраструктуру, которую используют партнёры</strong>. Каждый новый партнёр — выручка без пропорционального роста расходов. Это обеспечивает экспоненциальный рост маржинальности платформы.</p>
+      </div>
+    </div>
+
+    <div class="steps reveal" style="transition-delay:0.2s">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Доказать модель</div>
+          <div class="step-desc">Масштабирование собственной сети, стандартизация операционных процессов, запуск CRM и личного кабинета</div>
+          <span class="step-metric">7 → 10 офисов</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Монетизировать карты</div>
+          <div class="step-desc">Расширение использования криптокарт как высокомаржинального источника — наивысший ROI в модели</div>
+          <span class="step-metric">50K → 300K карт</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Экспоненциальный рост через партнёров</div>
+          <div class="step-desc">Онбординг и активизация White-label партнёров с готовой IT-платформой по всей России</div>
+          <span class="step-metric">40 → 150+ партнёров</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 8: ROADMAP ==================== -->
+<section id="s8">
+  <span class="slide-num">07 / Roadmap</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Дорожная карта</div>
+    <h2 class="section-title">2026–2028: <span class="grad-text">путь к $100M.</span></h2>
+  </div>
+
+  <div class="roadmap-track">
+    <div class="roadmap-line"></div>
+    <div class="roadmap-phases">
+
+      <div class="phase reveal" style="transition-delay:0.1s">
+        <div class="phase-dot"></div>
+        <div class="phase-card">
+          <div class="phase-year">2026</div>
+          <div class="phase-name">Proof of Scale</div>
+          <div class="phase-kpis">
+            <div class="kpi"><span class="kpi-val">40</span><span class="kpi-desc">партнёров по России</span></div>
+            <div class="kpi"><span class="kpi-val">10</span><span class="kpi-desc">собственных офисов</span></div>
+            <div class="kpi"><span class="kpi-val">50K</span><span class="kpi-desc">активных криптокарт</span></div>
+            <div class="kpi"><span class="kpi-val">✓</span><span class="kpi-desc">Получение лицензии (июль–декабрь)</span></div>
+            <div class="kpi"><span class="kpi-val">✓</span><span class="kpi-desc">Стандартизация и CRM</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal" style="transition-delay:0.2s">
+        <div class="phase-dot"></div>
+        <div class="phase-card">
+          <div class="phase-year">2027</div>
+          <div class="phase-name">International Expansion</div>
+          <div class="phase-kpis">
+            <div class="kpi"><span class="kpi-val">2–3</span><span class="kpi-desc">новые страны</span></div>
+            <div class="kpi"><span class="kpi-val">150+</span><span class="kpi-desc">партнёров</span></div>
+            <div class="kpi"><span class="kpi-val">150K</span><span class="kpi-desc">криптокарт</span></div>
+            <div class="kpi"><span class="kpi-val">≥20%</span><span class="kpi-desc">EBITDA</span></div>
+            <div class="kpi"><span class="kpi-val">✓</span><span class="kpi-desc">Подготовка к Series B</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal" style="transition-delay:0.3s">
+        <div class="phase-dot"></div>
+        <div class="phase-card">
+          <div class="phase-year">2028</div>
+          <div class="phase-name">Exit Ready</div>
+          <div class="phase-kpis">
+            <div class="kpi"><span class="kpi-val">300+</span><span class="kpi-desc">партнёров</span></div>
+            <div class="kpi"><span class="kpi-val">300K</span><span class="kpi-desc">криптокарт</span></div>
+            <div class="kpi"><span class="kpi-val">$20–25M</span><span class="kpi-desc">выручка</span></div>
+            <div class="kpi"><span class="kpi-val">25–30%</span><span class="kpi-desc">EBITDA</span></div>
+            <div class="kpi"><span class="kpi-val">$100M</span><span class="kpi-desc">целевая оценка (стратег. продажа)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: FINANCIALS ==================== -->
+<section id="s9">
+  <span class="slide-num">08 / Финансы</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Финансовый прогноз</div>
+    <h2 class="section-title">Три сценария.<br><span class="grad-text">Один путь к $100M.</span></h2>
+  </div>
+
+  <div class="scenarios reveal" style="transition-delay:0.1s">
+    <div class="scenario">
+      <div class="scenario-label">Консервативный</div>
+      <div class="scenario-val cons">$72M</div>
+      <div class="scenario-return" style="color:var(--muted)">×18 доходность</div>
+      <div class="scenario-revenue">Выручка $15M · EBITDA $5M</div>
+      <div class="scenario-revenue" style="font-size:12px">Мультипликатор 12× EBITDA</div>
+    </div>
+    <div class="scenario base">
+      <div class="scenario-label"><span class="scenario-star">★</span> Базовый</div>
+      <div class="scenario-val base-v">$100M</div>
+      <div class="scenario-return">×30 доходность</div>
+      <div class="scenario-revenue">Выручка $20M · EBITDA $6.5M</div>
+      <div class="scenario-revenue" style="font-size:12px">Мультипликатор 15× EBITDA</div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-label">Оптимистичный</div>
+      <div class="scenario-val opt">$115M</div>
+      <div class="scenario-return" style="color:var(--purple)">×38 доходность</div>
+      <div class="scenario-revenue">Выручка $25M · EBITDA $8M</div>
+      <div class="scenario-revenue" style="font-size:12px">Мультипликатор 14× EBITDA</div>
+    </div>
+  </div>
+
+  <div class="investor-box reveal" style="transition-delay:0.2s">
+    <div class="inv-item">
+      <div class="inv-label">Входной билет</div>
+      <div class="inv-val">3 млн ₽</div>
+      <div class="inv-sub">= 1% компании</div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-label">Базовый сценарий</div>
+      <div class="inv-val">≈ $1.1M</div>
+      <div class="inv-sub">потенциальный доход при exit Q4 2028</div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; padding:16px 20px; border-left:2px solid rgba(106,228,251,0.3); reveal">
+    <p style="font-size:13px; color:var(--muted)">Методология: мультипликатор <strong style="color:var(--text)">12–15× EBITDA</strong> — стандарт для финтех-платформ. Exit через стратегическую продажу 70–80% крупному финтеху, банку или платёжной системе. Основатель сохраняет 15–20% для долгосрочного участия.</p>
+  </div>
+</section>
+
+<!-- ==================== SLIDE NEG: NEGATIVE SCENARIO ==================== -->
+<section id="s-neg">
+  <span class="slide-num">— / Защита инвестора</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Конвертируемый займ</div>
+    <h2 class="section-title">Самый негативный сценарий.<br><span class="grad-text">Вы всегда в плюсе.</span></h2>
+  </div>
+
+  <div class="neg-layout">
+    <div class="neg-shield reveal" style="transition-delay:0.1s">
+      <div class="shield-icon">🛡</div>
+      <div class="shield-title">Гарантия возврата</div>
+      <div class="shield-sub">Деньги привлекаются по договору<br>конвертируемого займа</div>
+      <div class="guarantee-badge">
+        <span class="g-val">15% / год</span>
+        <span class="g-label">Ставка по ключевой ЦБ РФ</span>
+      </div>
+      <p style="margin-top:18px; font-size:12px; color:var(--muted); line-height:1.6; max-width:240px">
+        Если Вас не устроят темпы роста — Вы можете отказаться от доли и запросить <strong style="color:var(--text)">полный возврат с процентами</strong> по ставке ЦБ РФ на момент получения займа.
+      </p>
+    </div>
+
+    <div class="neg-terms reveal" style="transition-delay:0.2s">
+      <div class="neg-term">
+        <div class="neg-term-title">Структура сделки</div>
+        <div class="neg-term-desc">
+          Договор конвертируемого займа с ООО «УК ДимМар» (ИНН 0276183601).<br>
+          <strong>3 млн ₽ → 1% компании</strong> при конвертации.<br>
+          <strong>6 млн ₽ → 2% компании</strong> при конвертации.<br>
+          Pre-money оценка зафиксирована на дату подписания: <strong>300 млн ₽</strong>.
+        </div>
+      </div>
+      <div class="neg-term">
+        <div class="neg-term-title">Срок конвертации</div>
+        <div class="neg-term-desc">
+          <strong>24 месяца</strong> с даты получения займа.<br>
+          Конвертация в долю: автоматически при создании холдинга, следующем раунде, Liquidity Event или по инициативе инвестора.
+        </div>
+      </div>
+      <div class="neg-term">
+        <div class="neg-term-title">Сценарий «не верю в рост»</div>
+        <div class="neg-term-desc">
+          Если компания не достигла целей — инвестор <strong>возвращает тело займа + 15% годовых</strong>.<br>
+          Никакого equity, никаких убытков. <strong>Риск ограничен ставкой ЦБ РФ.</strong>
+        </div>
+      </div>
+      <div class="neg-term" style="border-color:rgba(106,228,251,0.2); background:rgba(106,228,251,0.04)">
+        <div class="neg-term-title" style="color:var(--cyan)">Итог: два выхода, оба в плюс</div>
+        <div class="neg-term-desc">
+          <strong style="color:var(--text)">Если рост устраивает</strong> — конвертируете в долю и участвуете в exit ×30–38×.<br>
+          <strong style="color:var(--text)">Если не устраивает</strong> — возвращаете займ с процентами по ставке ЦБ. <strong>Проигрышного сценария нет.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 10: TEAM ==================== -->
+<section id="s10">
+  <span class="slide-num">09 / Команда</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Команда</div>
+    <h2 class="section-title">Люди, которые <span class="grad-text">уже делали это.</span></h2>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card reveal" style="transition-delay:0.1s">
+      <img class="team-photo" src="img/photo_2023-09-07_12-51-43.jpg" alt="Усманов Марат">
+      <div class="team-name">Усманов Марат</div>
+      <div class="team-role">Founder & CEO</div>
+      <div class="team-bio">Создатель и идеолог экосистемы DIMMAREX. Построил проект <strong>с нуля до 7 работающих офисов</strong>. Глубокий опыт в криптовалютных операциях, международных платежах и построении партнёрских сетей. Видение — стать инфраструктурным лидером рынка РФ.</div>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.2s">
+      <img class="team-photo" src="img/photo_2023-04-24_12-48-23.jpg" alt="Сарапулов Семён">
+      <div class="team-name">Сарапулов Семён</div>
+      <div class="team-role">Strategic Advisor · Investor Relations</div>
+      <div class="team-bio">Единственный в команде опыт <strong>полного цикла</strong>: основал компанию → вывел в лидеры рынка недвижимости России → <strong>продал стратегическому инвестору</strong>. Понимает, что важно инвесторам на каждом этапе. Отвечает за стратегию выхода и отношения с инвесторами.</div>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.3s">
+      <img class="team-photo" src="img/photo_2025-08-18_15-23-24.jpg" alt="Золотухина Ольга">
+      <div class="team-name">Золотухина Ольга</div>
+      <div class="team-role">CMO · Директор по маркетингу</div>
+      <div class="team-bio">Специализация — <strong>франшизы и партнёрские сети</strong>. Участвовала в десятках крупнейших франчайзинговых проектов России. Разрабатывает стратегию привлечения и онбординга партнёров. Ключевой драйвер роста сети с 40 до 300+ партнёров.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 11: COMPETITION ==================== -->
+<section id="s11">
+  <span class="slide-num">10 / Конкуренция</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Конкурентная позиция</div>
+    <h2 class="section-title">Мы не конкурируем с биржами.<br><span class="grad-text">Мы инфраструктура для всех.</span></h2>
+  </div>
+
+  <div class="reveal" style="transition-delay:0.1s">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Возможность</th>
+          <th>DIMMAREX</th>
+          <th>Garantex / Binance</th>
+          <th>Банки</th>
+          <th>Мелкие обменники</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="dimmarex-row">
+          <td class="feature-name">Офлайн-сеть точек</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check-part">частично</span></td>
+          <td><span class="check-part">разрозненно</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">White-label для партнёров</td>
+          <td class="dimmarex-row"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr class="dimmarex-row">
+          <td class="feature-name">Криптокарты</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check-part">частично</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">API для бизнеса</td>
+          <td class="dimmarex-row"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check-part">ограничено</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr class="dimmarex-row">
+          <td class="feature-name">Лицензирование РФ</td>
+          <td><span class="in-progress">в процессе</span></td>
+          <td><span class="check-part">риски</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="comp-insight reveal" style="transition-delay:0.2s">
+    <p>DIMMAREX — это <strong>не конкурент биржам</strong>. Это инфраструктурный слой для сотен операторов, которые не могут работать с Binance из-за регуляции. Наш клиент — партнёр, который использует нашу инфраструктуру для роста своего бизнеса.</p>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 12: LEGAL ==================== -->
+<section id="s12">
+  <span class="slide-num">11 / Юрструктура</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Юридическая структура</div>
+    <h2 class="section-title">Договор конвертируемого займа.<br><span class="grad-text">Прозрачно и защищённо.</span></h2>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start;">
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="legal-block" style="margin-bottom:28px">
+        <div class="legal-block-title">Заёмщик</div>
+        <div class="legal-entity">ООО «УК ДимМар»</div>
+        <div class="legal-sub">ИНН 0276183601 · Действующее юрлицо · Зарегистрированный ТЗ DIMMAREX</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px">
+        <div class="neg-term">
+          <div class="neg-term-title">Сумма и срок</div>
+          <div class="neg-term-desc">
+            <strong>3 000 000 ₽</strong> → 1% компании<br>
+            <strong>6 000 000 ₽</strong> → 2% компании<br>
+            Срок займа: <strong>24 месяца</strong>
+          </div>
+        </div>
+        <div class="neg-term">
+          <div class="neg-term-title">Pre-money оценка</div>
+          <div class="neg-term-desc">
+            <strong>300 000 000 ₽</strong> — зафиксирована на дату подписания договора. Не меняется до момента конвертации.
+          </div>
+        </div>
+        <div class="neg-term">
+          <div class="neg-term-title">Ставка при невозврате</div>
+          <div class="neg-term-desc">
+            <strong>15% годовых</strong> при отсутствии конвертации. Тело + проценты — полный возврат.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.2s">
+      <div class="legal-block-title" style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:20px">События конвертации</div>
+      <div class="timeline-items">
+        <div class="tl-item">
+          <div class="tl-date">Новый раунд</div>
+          <div class="tl-text">Автоматическая конвертация займа в долю по зафиксированной оценке 300 млн ₽.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">+24 месяца</div>
+          <div class="tl-text">Истечение срока — <strong>конвертация или возврат по выбору инвестора</strong>.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Инициатива инвестора</div>
+          <div class="tl-text">Инвестор вправе потребовать конвертацию <strong>в любой момент</strong> в течение срока займа.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">+12–18 мес</div>
+          <div class="tl-text">Создание <strong>международного холдинга</strong>. Доля инвестора автоматически переходит в структуру холдинга.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Liquidity Event / IPO</div>
+          <div class="tl-text">При продаже, слиянии или IPO — конвертация + <strong>Tag-along</strong>: инвестор продаёт на тех же условиях.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:18px 20px; background:rgba(106,228,251,0.06); border:1px solid rgba(106,228,251,0.2); border-radius:4px">
+        <p style="font-size:13px; color:var(--text); line-height:1.65">
+          <span style="color:var(--cyan); font-weight:700">Гарантия инвестора:</span> при любом исходе инвестор получает либо <strong>долю в растущей компании</strong>, либо <strong>возврат займа с 15% годовых</strong>. Сценарий убытка исключён условиями договора.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 13: OFFER ==================== -->
+<section id="s13">
+  <span class="slide-num">12 / Предложение</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Инвестиционное предложение</div>
+    <h2 class="section-title">Условия раунда.<br><span class="grad-text">3 млн = ×30 потенциал.</span></h2>
+  </div>
+
+  <div class="offer-layout">
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="offer-params">
+        <div class="param-row">
+          <span class="param-key">Pre-money оценка</span>
+          <span class="param-val">285 млн ₽</span>
+        </div>
+        <div class="param-row">
+          <span class="param-key">Объём раунда</span>
+          <span class="param-val highlight">15 млн ₽</span>
+        </div>
+        <div class="param-row">
+          <span class="param-key">Предлагаемая доля</span>
+          <span class="param-val highlight">5%</span>
+        </div>
+        <div class="param-row">
+          <span class="param-key">Post-money оценка</span>
+          <span class="param-val">300 млн ₽</span>
+        </div>
+        <div class="param-row">
+          <span class="param-key">1% компании</span>
+          <span class="param-val highlight">= 3 млн ₽</span>
+        </div>
+        <div class="param-row">
+          <span class="param-key">Минимальный вход</span>
+          <span class="param-val">3 млн ₽</span>
+        </div>
+      </div>
+
+      <div class="cap-table" style="margin-top:28px">
+        <div class="ct-title">Структура капитала после раунда</div>
+        <div class="ct-items">
+          <div class="ct-item">
+            <span class="ct-pct">87.4%</span>
+            <div class="ct-label">Основатель</div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-pct">7%</span>
+            <div class="ct-label">Пред. инвесторы</div>
+          </div>
+          <div class="ct-item">
+            <span class="ct-pct" style="color:var(--cyan)">5%</span>
+            <div class="ct-label">Текущий раунд</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.2s">
+      <div class="use-of-funds">
+        <div class="uof-title">Использование средств (15 млн ₽)</div>
+        <div class="fund-bar-row">
+          <div class="fund-labels"><span class="fund-name">IT-платформа и API</span><span class="fund-pct">50% · 7.5 млн</span></div>
+          <div class="fund-track"><div class="fund-fill" style="width:50%"></div></div>
+        </div>
+        <div class="fund-bar-row">
+          <div class="fund-labels"><span class="fund-name">Масштабирование партнёрской сети</span><span class="fund-pct">25% · 3.75 млн</span></div>
+          <div class="fund-track"><div class="fund-fill" style="width:25%; opacity:0.75"></div></div>
+        </div>
+        <div class="fund-bar-row">
+          <div class="fund-labels"><span class="fund-name">Лицензирование и комплаенс</span><span class="fund-pct">15% · 2.25 млн</span></div>
+          <div class="fund-track"><div class="fund-fill" style="width:15%; opacity:0.6"></div></div>
+        </div>
+        <div class="fund-bar-row">
+          <div class="fund-labels"><span class="fund-name">Маркетинг и привлечение</span><span class="fund-pct">10% · 1.5 млн</span></div>
+          <div class="fund-track"><div class="fund-fill" style="width:10%; opacity:0.45"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; padding:24px 28px; border:1px solid rgba(106,228,251,0.15); background:rgba(106,228,251,0.04); border-radius:4px">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--cyan); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px">Важно от основателя</div>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; font-style:italic">"Условия одинаковы для всех инвесторов раунда. 3 млн за 1% — это ранний вход до масштабирования. Каждый месяц промедления — это рост оценки в следующем раунде."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 14: INVESTOR RIGHTS ==================== -->
+<section id="s14">
+  <span class="slide-num">13 / Права инвестора</span>
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Права инвестора</div>
+    <h2 class="section-title">Полная защита.<br><span class="grad-text">Прозрачность на каждом шаге.</span></h2>
+  </div>
+
+  <div class="rights-grid">
+    <div class="rights-block reveal" style="transition-delay:0.1s">
+      <div class="rights-block-title"><span class="rb-icon">📊</span>Информационные права</div>
+      <div class="rights-list">
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Ежеквартальная отчётность</strong> — P&amp;L, баланс, cash flow</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Ежегодный аудиторский отчёт</strong></div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Уведомление о ключевых корпоративных событиях</strong> (M&amp;A, новые раунды, смена структуры)</div></div>
+      </div>
+    </div>
+    <div class="rights-block reveal" style="transition-delay:0.15s">
+      <div class="rights-block-title"><span class="rb-icon">🛡</span>Защита капитала</div>
+      <div class="rights-list">
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Anti-dilution protection</strong> — защита доли от размывания в будущих раундах</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Pre-emptive right</strong> — преимущественное право участия в следующих раундах</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>MFN (Most Favoured Nation)</strong> — право на лучшие условия, предложенные другим инвесторам</div></div>
+      </div>
+    </div>
+    <div class="rights-block reveal" style="transition-delay:0.2s">
+      <div class="rights-block-title"><span class="rb-icon">⚡</span>Управление и участие</div>
+      <div class="rights-list">
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Место в Advisory Board</strong> — совещательный совет с влиянием на стратегию</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Право на due diligence</strong> перед каждым следующим раундом</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text">Прямой доступ к основателю и команде</div></div>
+      </div>
+    </div>
+    <div class="rights-block reveal" style="transition-delay:0.25s">
+      <div class="rights-block-title"><span class="rb-icon">🚀</span>Права при выходе (Exit)</div>
+      <div class="rights-list">
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Tag-along rights</strong> — право присоединиться к продаже основателя на тех же условиях</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text"><strong>Уведомление о Liquidity Event</strong> не менее чем за 30 дней</div></div>
+        <div class="right-item"><div class="right-bullet"></div><div class="right-text">Выплаты пропорционально доле при любом событии ликвидности</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 15: CTA ==================== -->
+<section id="s15">
+  <span class="slide-num">14 / Следующий шаг</span>
+
+  <div class="cta-diamond reveal">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ctaGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6AE4FB"/>
+          <stop offset="100%" stop-color="#8F77F0"/>
+        </linearGradient>
+      </defs>
+      <path d="M40 2L78 40L40 78L2 40Z" stroke="url(#ctaGrad)" stroke-width="1.5" fill="none"/>
+      <path d="M40 12L68 40L40 68L12 40Z" fill="url(#ctaGrad)" opacity="0.15"/>
+      <path d="M40 22L58 40L40 58L22 40Z" fill="url(#ctaGrad)" opacity="0.3"/>
+      <path d="M40 22L58 40L40 40Z" fill="url(#ctaGrad)" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <h2 class="cta-headline reveal" style="transition-delay:0.1s">Стать частью<br><span class="grad-text">DIMMAREX</span></h2>
+  <p class="cta-sub reveal" style="transition-delay:0.2s">Раунд ограничен. Вход по минимальной оценке до масштабирования.</p>
+
+  <div class="cta-urgency reveal" style="transition-delay:0.3s">
+    <div class="urgency-item">
+      <span class="urgency-val">5</span>
+      <div class="urgency-label">Мест в раунде</div>
+    </div>
+    <div class="cta-divider"></div>
+    <div class="urgency-item">
+      <span class="urgency-val">3 млн</span>
+      <div class="urgency-label">Минимальный вход</div>
+    </div>
+    <div class="cta-divider"></div>
+    <div class="urgency-item">
+      <span class="urgency-val">×30</span>
+      <div class="urgency-label">Базовый потенциал</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="transition-delay:0.4s">
+    <a href="https://t.me/maratusmanovvv" class="cta-contact">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.14.65-.53.81-1.08.5l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.04 5.5-4.97c.24-.21-.05-.33-.37-.12L6.27 14.4l-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.53-.2.99.13.92.12z"/></svg>
+      @maratusmanovvv
+    </a>
+    <div class="cta-contact-sub">Телеграм основателя · Ответим в течение 24 часов</div>
+  </div>
+
+  <div class="cta-materials reveal" style="transition-delay:0.5s">
+    <span class="material-tag">📊 Финансовая модель Excel</span>
+    <span class="material-tag">📋 Due Diligence документация</span>
+    <span class="material-tag">⚖️ Юридические документы ООО</span>
+    <span class="material-tag">🤝 Встреча с командой</span>
+  </div>
+
+  <div style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%); font-family:'DM Mono',monospace; font-size:11px; color:rgba(226,222,255,0.2); letter-spacing:0.2em; text-transform:uppercase">
+    DIMMAREX · CryptoBank Infrastructure · 2026–2028
+  </div>
+</section>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+(function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+})();
+
+document.addEventListener('mousedown', () => {
+  cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+  ring.style.width = '20px'; ring.style.height = '20px';
+});
+document.addEventListener('mouseup', () => {
+  cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+  ring.style.width = '32px'; ring.style.height = '32px';
+});
+
+// Nav dots
+const sections = document.querySelectorAll('section');
+const navDots = document.getElementById('navDots');
+
+sections.forEach((s, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'nav-dot';
+  dot.addEventListener('click', () => s.scrollIntoView({ behavior: 'smooth' }));
+  navDots.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.nav-dot');
+
+// Intersection Observer for nav + reveal animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Active dot
+      const idx = Array.from(sections).indexOf(entry.target);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(s => obs.observe(s));
+
+// Reveal on scroll
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Coin carousel auto-rotation
+(function initCoinCarousel() {
+  const slides = document.querySelectorAll('.coin-slide');
+  const dots = document.querySelectorAll('.coin-dot');
+  if (!slides.length) return;
+  let current = 0;
+
+  function showSlide(idx) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('prev', i === (idx - 1 + slides.length) % slides.length);
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    current = idx;
+  }
+
+  showSlide(0);
+  setInterval(() => showSlide((current + 1) % slides.length), 3000);
+
+  dots.forEach((d, i) => d.addEventListener('click', () => showSlide(i)));
+})();
+</script>
+</body>
+</html>
